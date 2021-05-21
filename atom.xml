@@ -1,0 +1,1222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>Blog de Tokiotas</title>
+ <link href="./atom.xml" rel="self"/>
+ <link href="./"/>
+ <updated>2021-05-20T18:49:34+00:00</updated>
+ <id>http://0.0.0.0:4000</id>
+ <author>
+   <name></name>
+   <email></email>
+ </author>
+
+ 
+ <entry>
+   <title>Hybrid File Server</title>
+   <link href="./2021/06/21/Hybrid_file_server/"/>
+   <updated>2021-06-21T03:00:00+00:00</updated>
+   <id>./2021/06/21/Hybrid_file_server</id>
+   <content type="html">
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/06/21-hybrid-fil-server/diff_hybrid_file_server.jpg&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/06/21-hybrid-fil-server/diff_hybrid_file_server.jpg&quot; style=&quot;&quot; alt=&quot;Hybrid file Server&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+&lt;p&gt;La acumulación de archivos y documentos en nuestros servidores de ficheros puede ser preocupante, pues implica la necesidad de eliminar o archivar documentos para liberar espacio y/o ampliar cabina/discos. Esto se suele traducir en malestar por parte del usuario y/o en un desembolso económico. Todo ello sin contar con la infraestructura a montar en el caso de tener diferentes sedes en diferentes lugares geográficos ni tampoco en las soluciones de &lt;em&gt;backup&lt;/em&gt; a implementar.&lt;/p&gt;
+
+&lt;p&gt;Es cierto que existen diferentes tipos de infraestructuras para solucionar estos problemas. Desde Tokiota presentamos una solución para solventarlos y, además, tener una recuperación ante un desastre de nuestros servidores de ficheros rápido y sencillo. Nosotros la hemos llamado &lt;em&gt;Hybrid File Server&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Utilizamos el concepto de &lt;em&gt;Hybrid File&lt;/em&gt; Server al hecho de centralizar los datos de un servidor de ficheros en un servicio de almacenaje en Azure y tener en nuestra infraestructura &lt;em&gt;On Premise&lt;/em&gt; uno o varios servidores de ficheros con el objetivo de utilizarlo/s como cache de archivos.&lt;/p&gt;
+
+&lt;p&gt;Este sistema consiste en guardar la totalidad de nuestros archivos en una cuenta de almacenamiento de Azure y tener un subconjunto de los documentos vivos, los más utilizados, en el servidor o servidores de ficheros estableciendo una sincronización activa y bidireccional. Esta sincronización puede realizarse con un total de 30 servidores de ficheros distintos.&lt;/p&gt;
+
+&lt;p&gt;Al utilizar la política de nube por niveles (&lt;em&gt;cloud tiering policy&lt;/em&gt;), el espacio ocupado en nuestra infraestructura On Premise por el servidor de ficheros podrá verse reducido en un 50%, un 60% o incluso un 90%. El funcionamiento de esta política consiste en generar punteros de los documentos menos usados de nuestro servidor de ficheros. Estos punteros contendrán los metadatos del fichero y un enlace a nuestro fichero en Azure. En el momento de abrir el puntero, el fichero se descargará automáticamente en nuestro servidor de ficheros ocupando así la totalidad del tamaño del fichero y pudiendo ser utilizado por el usuario.&lt;/p&gt;
+
+&lt;p&gt;La arquitectura descrita es completamente transparente al usuario a nivel operacional, aunque sí que el usuario podrá detectar si un archivo está vivo o es un puntero.&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/06/21-hybrid-fil-server/diff_hybrid_file_server.jpg&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/06/21-hybrid-fil-server/diff_hybrid_file_server.jpg&quot; style=&quot;&quot; alt=&quot;Carpeta con/sin Hybrid File Server configurado&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Los usuarios experimentaran un pequeño retraso en el primer acceso al puntero, esta acción descargará la totalidad del fichero. A partir de este momento, el fichero pasará a ser un documento vivo, si no se vuelve a acceder al documento, se volverá a transformar en puntero.&lt;/p&gt;
+
+&lt;p&gt;En Azure Storage se mantendrá la totalidad de los ficheros, pudiendo así delegar la copia de seguridad del servidor de ficheros a Azure. Esta copia de seguridad puede ser programada y gestionada desde el portal de Azure, sin la necesidad de ninguna herramienta de terceros ni preocuparse por el tiempo de copia. Las opciones de recuperación permiten la recuperación granular, llegando a nivel de ficheros.&lt;/p&gt;
+
+&lt;p&gt;La recuperación ante desastres es uno de los puntos más fuertes de esta arquitectura. En el supuesto que el servidor de ficheros quedase inoperativo, independientemente del problema, la recuperación de este servicio es rápida y sencilla. Únicamente se tendrá que desplegar un nuevo servidor de ficheros, habilitar la sincronización con Azure y el servicio estará reestablecido. Con esta solución no es necesario la recuperación del servidor de ficheros de una copia de seguridad, lo que implica un gran ahorro de tiempo y esfuerzo.&lt;/p&gt;
+
+&lt;p&gt;Así de eficiente puede llegar a ser la solución de &lt;em&gt;Hybrid File Server&lt;/em&gt;, ofreciendo grandes mejoras y facilitando la gestión de nuestro servidor de ficheros.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Agiliza la escritura de tests con AutoFixture</title>
+   <link href="./2021/05/30/Autofixture/"/>
+   <updated>2021-05-30T03:00:00+00:00</updated>
+   <id>./2021/05/30/Autofixture</id>
+   <content type="html">
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/05/30-Autofixture/autofixture.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/05/30-Autofixture/autofixture.png&quot; style=&quot;&quot; alt=&quot;Agiliza la escritura de tests con AutoFixture&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Al escribir tests generalmente creamos objetos que representan el estado inicial y &lt;strong&gt;en algunas ocasiones crear estos objetos y sus dependencias se puede convertir en una tarea compleja&lt;/strong&gt; y terminamos escribiendo código que no es relevante para el test, &lt;strong&gt;para optimizar esta tarea podemos apoyarnos en la librería &lt;a href=&quot;https://github.com/AutoFixture/AutoFixture&quot;&gt;AutoFixture&lt;/a&gt;&lt;/strong&gt; cuyo principal beneficio es la creación de valores aleatorios e instancias con un mínimo esfuerzo.&lt;/p&gt;
+
+&lt;h3 id=&quot;instalación&quot;&gt;Instalación&lt;/h3&gt;
+
+&lt;p&gt;Añadimos el paquete AutoFixture.Xunit2 a nuestro proyecto de pruebas.&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/05/30-Autofixture/install_nuget_package.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/05/30-Autofixture/install_nuget_package.png&quot; style=&quot;&quot; alt=&quot;Instalar el paquete nuget AutoFixture.Xunit2&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;ejemplo&quot;&gt;Ejemplo&lt;/h3&gt;
+
+&lt;p&gt;Teniendo el siguiente test:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;
+[Theory]
+[MemberData(nameof(Data))]
+public void GivenNewDelivery_WhenDeliver_ThenAllProductsWereDelivered(List&amp;lt; AmazonProduct&amp;gt; products)
+{
+    //Arrange
+    var sut = new AmazonDelivery(products);
+
+    //Act
+    sut.Deliver();
+
+    //Assert
+    Assert.NotEmpty(sut.Products);
+    Assert.Equal(sut.Products.Count, sut.DeliveredProducts);
+}
+
+public static IEnumerable&amp;lt;object[]&amp;gt; Data()
+{
+    return new List&amp;lt;object[]&amp;gt;
+    {
+        new object[] { 
+            new List&amp;lt; AmazonProduct&amp;gt;() 
+            { 
+                new AmazonProduct(123, &quot;How to Cook the Perfect Paella&quot;, &quot;Books&quot;, (decimal)34.00),
+                new AmazonProduct(456, &quot;Best Cities to Live in Spain&quot;, &quot;Books&quot;, (decimal)48.00),
+                new AmazonProduct(789, &quot;Learn Catalan in 21 days&quot;, &quot;Audio CDs&quot;, (decimal)26.00)
+            }
+        }
+    };
+}
+&lt;/pre&gt;
+
+&lt;p&gt;Podemos simplificarlo utilizando el atributo AutoData de AutoFixture para crear el SUT:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;  
+[Theory, AutoData]
+public void GivenNewDelivery_WhenDeliver__ThenAllProductsWereDelivered(AmazonDelivery sut)
+{
+    //Act
+    sut.Deliver();
+
+    //Assert
+    Assert.NotEmpty(sut.Products);
+    Assert.Equal(sut.Products.Count, sut.DeliveredProducts);
+}
+&lt;/pre&gt;
+
+&lt;p&gt;Hemos reducido drásticamente el código necesario ya que el método Data no es necesario porque AutoFixture se encarga de llenar las propiedades con valores aleatorios.&lt;/p&gt;
+
+&lt;p&gt;Una ventaja adicional es que &lt;strong&gt;nuestros tests son más tolerantes a los cambios en nuestro código&lt;/strong&gt; ya que AutoFixture se encarga de resolver las dependencias de nuestras clases, de esta forma aunque modifiquemos el constructor de la clase, el código del test seguirá funcionando sin necesidad de modificarlo.&lt;/p&gt;
+
+&lt;h3 id=&quot;más-información&quot;&gt;Más Información&lt;/h3&gt;
+
+&lt;p&gt;También se integra con NUnit y tiene soporte para generar mocks a través de Moq y otras librerías. Puedes obtener más información revisando la &lt;a href=&quot;https://autofixture.github.io/docs/quick-start/&quot;&gt;documentación&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Espero que este pequeño artículo te sea de utilidad y que puedas agilizar la escritura de tus tests. 😉👍👍&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Sacando provecho de Swagger - parte 3</title>
+   <link href="./2021/05/25/MejorasSwaggerParte3/"/>
+   <updated>2021-05-25T03:00:00+00:00</updated>
+   <id>./2021/05/25/MejorasSwaggerParte3</id>
+   <content type="html">
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/05/25-Mejoras-Swagger-Parte3/swagger-banner.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/05/25-Mejoras-Swagger-Parte3/swagger-banner.png&quot; style=&quot;&quot; alt=&quot;Mejoras Swagger parte 1&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Ya tenemos el tercer post de la serie, ya hemos visto comentarios XML y los ISchemaFilter. Hoy veremos content-type y headers.&lt;/p&gt;
+
+&lt;p&gt;Recordamos que tenemos una API en asp.net core 3.1 y con la versión de Swashbuckle.AspNetCore 5.0.0.&lt;/p&gt;
+
+&lt;h3 id=&quot;fijar-content-type-applicationjson&quot;&gt;&lt;strong&gt;Fijar content type application/json&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;Si nuestra API solo va a aceptar y devolver contenido de tipo json, es recomendar fijar estos parámetros. Para ello utilizamos los atributos ‘Consumes’ y ‘Produces’ de Microsoft.AspNetCore.Mvc.&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;  
+    /// &lt;summary&gt;
+    /// Get example info.
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;id&quot; /&gt;Example id.&amp;lt;/param&amp;gt;
+    /// &lt;param name=&quot;request&quot; /&gt;Request example&amp;lt;/param&amp;gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    [HttpPatch(&quot;/example/{id}&quot;)]
+    [Consumes(&quot;application/json&quot;)]
+    [Produces(&quot;application/json&quot;)]
+    public ActionResult&amp;lt; ExampleResponse &amp;gt; GetExample(int id, [FromBody] ExampleRequest request) 
+    =&amp;gt; Ok(new ExampleResponse());
+&lt;/pre&gt;
+
+&lt;p&gt;En este caso se han aplicado a nivel de método como caso de prueba, sería más habitual aplicarlos a toda la API.&lt;/p&gt;
+
+&lt;h3 id=&quot;añadir-headers-personalizados&quot;&gt;&lt;strong&gt;Añadir Headers personalizados&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;En ocasiones tenemos que construir una API que tiene que contar con un header propio, en este caso hemos utilizado un IOperationFilter y lo aplicamos a todos los endpoints.&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;  
+public class CustomHeaderFilter : IOperationFilter
+{
+    public void Apply(OpenApiOperation operation, OperationFilterContext context)
+    {
+        if (operation.Parameters == null)
+            operation.Parameters = new List&amp;lt; OpenApiParameter &amp;gt;();
+
+        operation.Parameters.Add(new OpenApiParameter
+        {
+            Name = &quot;x-header&quot;,
+            In = ParameterLocation.Header,
+            Description = &quot;Custom header for our application.&quot;,
+            Required = true,
+            Schema = new OpenApiSchema
+            {
+                Type = &quot;string&quot;,
+                Example = new OpenApiString(CustomHeader.Xyz.ToString()),
+                Enum = Enum
+                    .GetValues(typeof(CustomHeader))
+                    .Cast&amp;lt; CustomHeader &amp;gt;()
+                        .Select(x =&amp;gt; OpenApiAnyFactory.CreateFor(new OpenApiSchema() { Type = &quot;string&quot; }, x.ToString()))
+                        .ToList()
+            }
+        });
+    }
+}
+&lt;/pre&gt;
+
+&lt;p&gt;Para guardar los valores del CustomHeader se ha utilizado un enum:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;  
+public enum CustomHeader
+{
+    Xyz,
+    Abc
+}
+&lt;/pre&gt;
+
+&lt;p&gt;Y ya que tenemos un Enum, podemos ajustar NewtonsoftJson para serializar los enums como string. Para ello desde el Startup, en el método ConfigureServices podemos añadir:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;  
+services
+    .AddControllers()
+    .AddNewtonsoftJson(options =&amp;gt;
+    {
+        options.SerializerSettings.Converters.Add(new StringEnumConverter());
+    });
+&lt;/pre&gt;
+
+&lt;p&gt;Una vez creado el IOperationFilter, igual que el resto de filtros de swagger, es necesario registraro como hemos hecho con el filtro anterior:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;  
+services.AddSwaggerGen(c =&amp;gt;
+{
+    //[...]
+
+    c.OperationFilter&amp;lt; CustomHeaderFilter &amp;gt;();
+
+    //[...]
+});
+&lt;/pre&gt;
+
+&lt;p&gt;De esta forma, cuando swagger se encuentre el enum de CustomHeader nos facilitará un desplegable con los distintos valores:&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/05/25-Mejoras-Swagger-Parte3/despValores1.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/05/25-Mejoras-Swagger-Parte3/despValores1.png&quot; style=&quot;&quot; alt=&quot;imagen despValores1&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/05/25-Mejoras-Swagger-Parte3/despValores2.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/05/25-Mejoras-Swagger-Parte3/despValores2.png&quot; style=&quot;&quot; alt=&quot;imagen despValores2&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Muchas gracias. Nos leemos en más artículos.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Azure CLI, documenta todo lo que no pudiste</title>
+   <link href="./2021/05/10/Azure-CLI/"/>
+   <updated>2021-05-10T03:00:00+00:00</updated>
+   <id>./2021/05/10/Azure-CLI</id>
+   <content type="html">
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/05/10-Azure-CLI/logo.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/05/10-Azure-CLI/logo.png&quot; style=&quot;&quot; alt=&quot;Azure CLI&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;El entorno gráfico del portal de Azure, cambia constantemente.&lt;/p&gt;
+
+&lt;p&gt;Documentar pequeños cambios que no has podido implementar en la IaC y se realiza de forma manual, suele ser algo que se olvida documentar en los proyectos y provoca más de un quebradero de cabeza.&lt;/p&gt;
+
+&lt;p&gt;Supongamos que en nuestra organización se hacen las cosas bien y usamos la wiki del proyecto, pero nos dedicamos a poner capturas de imagen de lo que tenemos que hacer y en dos meses debemos volver a esta documentación. Tras esos dos meses el entorno gráfico de Azure habrá cambiado, la opción que buscabas no las encuentras donde ponía la captura, suele ocurrir que la cambian de nombre o reorganizan los menús; el caso es que la documentación gráfica &lt;strong&gt;no&lt;/strong&gt; nos ayuda, es obsoleta y solo se han puesto capturas con muy poco texto, en muchos casos ninguno, ¿qué queríamos hacer?, ¿qué es lo que pretendía decirme la imagen?, …&lt;/p&gt;
+
+&lt;p&gt;Para que esto no suceda y &lt;strong&gt;para que siempre tengamos todo documentado de la mejor forma, es recomendable usar un comando de CLI&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;note note&quot;&gt;
+    &lt;span class=&quot;notetitle&quot;&gt;
+        
+        Nota:
+        
+    &lt;/span&gt; 
+Si ni siquiera estas usando capturas de pantalla para documentar. Es un consejo, comienza a documentar esos pequeños cambios, y ya que comienzas a hacerlo, comienza bien: usa comandos CLI.
+&lt;/div&gt;
+
+&lt;p&gt;Tienes 3 opciones para realizar acciones con comandos en Azure:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Azure Cloud Shell.&lt;/li&gt;
+  &lt;li&gt;Módulo de Powershell.&lt;/li&gt;
+  &lt;li&gt;Azure CLI.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;¿Cuál de ellos es recomendable usar? depende. Lo recomendable es usar siempre el recomendado en tu organización y como consultores, en unos sitios será el modulo de Powershell y en otras me permitirán usar el portal de Azure, por tanto Azure Cloud Shell. Y si tubiera que usar siempre uno, naturalmente (Azure CLI)[https://docs.microsoft.com/es-es/cli/azure/install-azure-cli].&lt;/p&gt;
+
+&lt;p&gt;Por ejemplo para ver los datos de una cuenta en Powershell y Azure CLI:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;Powerhsell&quot;&gt;  
+//Example with Powershell
+Get-AzSubscription
+
+//Example with Azure CLI
+az account show
+&lt;/pre&gt;
+
+&lt;p&gt;Sea cual sea tu situación, evita capturar imágenes en nuestra documentación. Un simple comando nos permitirá ser conciso.&lt;/p&gt;
+
+&lt;p&gt;Por ejemplo, imaginemos que debemos activar en una Azure Function la configuración &lt;em&gt;Allways on&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Una captura cuidad para documentación sería:&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/05/10-Azure-CLI/Img01.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/05/10-Azure-CLI/Img01.png&quot; style=&quot;&quot; alt=&quot;Captura con una herramienta más profesional&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Y si eres buen documentador habrás puesto el nombre de la función, como acceder al menú, capturar la imagen de lo que debes cambiar y por supuesto habrás usado una buena resolución de la captura para que se vea bien. Aunque esta imagen ya es capad de documentar por sí misma.&lt;/p&gt;
+
+&lt;p&gt;Pero lo habitual es esto:&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/05/10-Azure-CLI/Img02.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/05/10-Azure-CLI/Img02.png&quot; style=&quot;&quot; alt=&quot;Captura con una herramienta como MS Paint&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;La primera captura, supone tener una herramienta de pago que permite hacer buenas capturas de documentación y no es habitual disponer de ella.&lt;/p&gt;
+
+&lt;p&gt;En la primera relativamente he tardado poco en hacerlo en la segunda mucho más tiempo, he usado MS Paint. En ambas he tenido que hacer muchas cosas, frente a una línea de comando:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;Powerhsell&quot;&gt;  
+az functionapp config set --always-on true --name MyFunctionApp 
+   --resource-group MyResourceGroup
+&lt;/pre&gt;
+
+&lt;p&gt;Como puedes observar, no tiene comparación. Máxime cuando los comandos no cambian, se amplían con funcionalidades, pero no cambian.&lt;/p&gt;
+
+&lt;p&gt;Espero que esta pequeña reflexión te ayude a mejorar la documentación de tu proyecto de Azure y por qué no en aquellas acciones que puedas usar este paradigma.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Sacando provecho de Swagger - parte 2</title>
+   <link href="./2021/04/26/MejorasSwaggerParte2/"/>
+   <updated>2021-04-26T03:00:00+00:00</updated>
+   <id>./2021/04/26/MejorasSwaggerParte2</id>
+   <content type="html">
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/04/26-Mejoras-Swagger-Parte2/swagger-banner.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/04/26-Mejoras-Swagger-Parte2/swagger-banner.png&quot; style=&quot;&quot; alt=&quot;Mejoras Swagger parte 1&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Continuamos con el segundo post de la serie enfocada a sacar más provecho a Swagger y darle más valor a nuestra API.&lt;/p&gt;
+
+&lt;p&gt;En el primer post vimos como añadir comentarios XML y hoy veremos como añadir ejemplos a los esquemas.&lt;/p&gt;
+
+&lt;p&gt;Recordamos que tenemos una API en asp.net core 3.1 y con la versión de Swashbuckle.AspNetCore 5.0.0.&lt;/p&gt;
+
+&lt;h3 id=&quot;añadir-ejemplos-para-los-esquemas&quot;&gt;&lt;strong&gt;¿Añadir ejemplos para los esquemas?&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;Si añadimos ejemplos a los esquemas que tenemos mejoraremos mucho la usabilidad de los endpoints y ayudaremos a la interpretación de las respuestas.&lt;/p&gt;
+
+&lt;p&gt;Para ello hay varias formas, yo me he decantado por utilizar ISchemaFilter de forma que para cada esquema le añadimos un ejemplo predefinido:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;  
+public class ExampleSchemaFilter : ISchemaFilter
+{
+    public void Apply(OpenApiSchema schema, SchemaFilterContext context) =&amp;gt; schema.Example = GetExampleOrNullFor(context.Type);
+
+    private IOpenApiAny GetExampleOrNullFor(Type type)
+    {
+        switch (type.Name)
+        {
+            case nameof(ExampleRequest):
+                return new OpenApiObject
+                {
+                    [ExampleRequest.ElementJsonProperty] = new OpenApiString(&quot;Some element request.&quot;)
+                };
+            case nameof(ExampleResponse):
+                return new OpenApiObject
+                {
+                    [ExampleResponse.ResponseJsonProperty] = new OpenApiString(&quot;Any response.&quot;),
+                    [ExampleResponse.ErrorsJsonProperty] = new OpenApiNull()
+                };
+            default:
+                return null;
+        }
+    }
+}
+&lt;/pre&gt;
+
+&lt;p&gt;Para acabar de entender el ejemplo muestro las clases de Request y Response utilizadas:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;  
+public class ExampleRequest
+{
+    public const string ElementJsonProperty = &quot;element_json_custom_name&quot;;
+
+    [JsonProperty(PropertyName = ElementJsonProperty, Required = Required.Always)]
+    [StringLength(200, MinimumLength = 5)]
+    public string Element { get; set; }
+}
+public class ExampleResponse
+{
+    public const string ResponseJsonProperty = &quot;response_json_custom_name&quot;;
+    public const string ErrorsJsonProperty = &quot;errors_json_custom_name&quot;;
+
+    [JsonProperty(PropertyName = ResponseJsonProperty, Required = Required.DisallowNull)]
+    [StringLength(300)]
+    public string Response { get; set; }
+
+    [JsonProperty(PropertyName = ErrorsJsonProperty, Required = Required.AllowNull)]
+    public string Errors { get; set; }
+}
+&lt;/pre&gt;
+
+&lt;p&gt;En este caso, además de montar los ejemplos para peticiones y respuestas, he aprovechado para añadir ciertos atributos a los campos como el JsonProperty o el StringLenght, estos atributos al igual que otros atributos de Newtonsoft.Json o de System.ComponentModel.DataAnnotations son perfectamente reconocidos por swagger y añadirá las restricciones oportunas.&lt;/p&gt;
+
+&lt;p&gt;En este caso en hemos utilizado el JsonProperty por que nos puede interesar que el nombre del parámetro del Json sea uno concreto o para indicar si un campo es obligatorio, o si tiene que estar presente en el json pero puede ser nulo entre otros. De la misma forma también hemos especificado unos StringLength.&lt;/p&gt;
+
+&lt;p&gt;Centrándonos en el ISchemaFilter, el paquete de Swashbuckle ya se encarga de descubrir los endpoints y leer los parámetros de entrada y salida, en el ejemplo para cada esquema le asignamos un ejemplo.&lt;/p&gt;
+
+&lt;p&gt;Para que se aplique el scheme tenemos que registrarlo en la configuración del swagger:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;  
+services.AddSwaggerGen(c =&amp;gt;
+{
+    //[...] 
+
+    c.SchemaFilter &amp;lt; ExamplesSchemaFilter &amp;gt;();
+
+    //[...]
+});
+&lt;/pre&gt;
+
+&lt;p&gt;Ahora al abrir swagger nos aparecerán estos ejemplos añadidos:&lt;/p&gt;
+
+&lt;p&gt;Creamos el siguiente endpoint de ejemplo:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;  
+/// &lt;summary&gt;
+/// Get example info.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;id&quot; /&gt;Example id.&amp;lt;/param&amp;gt;
+/// &lt;param name=&quot;request&quot; /&gt;Request example&amp;lt;/param&amp;gt;
+/// &lt;returns&gt;&lt;/returns&gt;
+[HttpPatch(&quot;/example/{id}&quot;)]
+[ProducesResponseType(typeof(ExampleResponse), (int)HttpStatusCode.NoContent)]
+[ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.BadRequest)]
+[ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.Unauthorized)]
+[ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.Forbidden)]
+[ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.NotFound)]
+public ActionResult&amp;lt; ExampleResponse &amp;gt; GetExample(int id, [FromBody] ExampleRequest request) =&amp;gt; Ok(new ExampleResponse());
+&lt;/pre&gt;
+
+&lt;p&gt;Y desde swagger veremos los esquemas asociados a Example Request y Response&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/04/26-Mejoras-Swagger-Parte2/Esquemas.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/04/26-Mejoras-Swagger-Parte2/Esquemas.png&quot; style=&quot;&quot; alt=&quot;imagen Esquemas&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Introducción a Azure Bicep</title>
+   <link href="./2021/04/12/IntroduccionAzureBicep/"/>
+   <updated>2021-04-12T03:00:00+00:00</updated>
+   <id>./2021/04/12/IntroduccionAzureBicep</id>
+   <content type="html">
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/logo.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/logo.png&quot; style=&quot;&quot; alt=&quot;Azure Bicep&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;En el momento de la publicación de este artículo el desarrollo del producto esta en una fase inicial, pero con soporte por parte de Azure.&lt;/p&gt;
+
+&lt;p&gt;Desde la versión 0.3.1, los puntos destacables son:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Integración con Az CLI y Az PS.&lt;/li&gt;
+  &lt;li&gt;Deja de ser una herramienta experimental.&lt;/li&gt;
+  &lt;li&gt;Compatible con los planes de soporte de Microsoft&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;El propósito de Azure Bicep el siguiente:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Usar un lenguaje más amigable para un desarrollador que los JSON de ARM.&lt;/li&gt;
+  &lt;li&gt;Producir una sola plantilla de ARM para evitar el uso de una cuenta de almacenamiento o cualquier otro sistema para almacenar plantillas vinculadas.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A diferencia de &lt;a href=&quot;https://www.terraform.io/&quot;&gt;Terraform&lt;/a&gt; o &lt;a href=&quot;https://www.pulumi.com/&quot;&gt;Pulumi&lt;/a&gt;, Bicep es específico de Azure. Podríamos pensar que Microsoft están creando una nueva generación de ARM.&lt;/p&gt;
+
+&lt;p&gt;Si ya tienes experiencia con Terraform o con Pulumi, podrás observar que el propósito de Bicep es similar a las ventajas que tenemos con Terraform o Pulumi:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Menor número de líneas de código necesarias para crear un recurso en Azure que usando ARM.&lt;/li&gt;
+  &lt;li&gt;Usan lenguajes o bien propios como Terraform (HCL) o bien el casi más te guste con Pulumi (puedes usar C#, JS, TS, Go …).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Parece que el propósito de Bicep es darnos a los desarrolladores una alternativa similar a Terraform o Pulumi nativa de Microsoft.&lt;/p&gt;
+
+&lt;p&gt;El proyecto Biceps está en: &lt;a href=&quot;https://github.com/Azure/bicesp&quot; target=&quot;_blank&quot;&gt;https://github.com/Azure/bicesp&lt;/a&gt;, suscríbete para estar al día.&lt;/p&gt;
+
+&lt;p&gt;Supongo que alguna vez has visto un ARM para generar un recurso de Azure y si no, aquí tienes un extracto:&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/img01.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/img01.png&quot; style=&quot;&quot; alt=&quot;Ejemplo de ARM&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;¿Qué necesitamos para poder hacer un ejemplo práctico?:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Instalar la herramienta CLI de Bicep (seguir las instrucciones: &lt;a href=&quot;https://github.com/Azure/bicep/blob/main/docs/installing.md&quot;&gt;https://github.com/Azure/bicep/blob/main/docs/installing.md&lt;/a&gt;).&lt;/li&gt;
+  &lt;li&gt;Instalar la extensión de Visual Studio Code para Bicep. Es un paso opcional, pero mejora mucho nuestro trabajo con Bicep.&lt;/li&gt;
+  &lt;li&gt;Abrir el fichero bicep disponible en el repot de GitHub.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/img02.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/img02.png&quot; style=&quot;&quot; alt=&quot;Ejemplo de Bicep&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;En el ejemplo anterior, donde creamos una Web App, para ARM usamos 68 líneas mientras que para Bicep solamente estamos en 31 líneas Es &lt;strong&gt;más conciso&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Podrás observar que la Web App no necesita que se declare explícitamente la dependencia con el Service Plan, basta con usar plan.id para inferir la dependencia. &lt;strong&gt;Es más legible&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Por desgracia, aun no existe una integración oficial de Bicep con Azure DevOps (solo algunas cosas experimentales). Pero todo hace pensar que seguirá la logica que se está aplicando con Terraform o Pulumi, ya que los comandos son muy parecidos a lo que ejecutan ambos sistemas:&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/img03.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/img03.png&quot; style=&quot;&quot; alt=&quot;Ejemplo de Terraform&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Por tanto vamos a usar de momento Bicep para crear un fichero &lt;em&gt;.json&lt;/em&gt; de ARM a partir de un fichero &lt;em&gt;.bicep&lt;/em&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/img04.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/img04.png&quot; style=&quot;&quot; alt=&quot;De Bicep a ARM&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Tras la ejecución de la build ya tendremos una plantilla de ARM:&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/img05.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/img05.png&quot; style=&quot;&quot; alt=&quot;Salida de la build de Bicep en ARM&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Con esta plantilla podemos probar nuestro ejemplo usando &lt;strong&gt;Azure CLI&lt;/strong&gt; desde el terminal de VS Code:&lt;/p&gt;
+
+&lt;div class=&quot;note note&quot;&gt;
+    &lt;span class=&quot;notetitle&quot;&gt;
+        
+        Nota:
+        
+    &lt;/span&gt; 
+Usar --confirm-with-what-if exige tener la última versión de Azure CLI, puedes optar a probar el ARM desde DevOps, por ejemplo.
+&lt;/div&gt;
+
+&lt;pre data-enlighter-language=&quot;Powerhsell&quot;&gt;  
+az deployment group create --resource-group 'tokiotajmfztest'
+   --template-file main.json --confirm-with-what-if
+&lt;/pre&gt;
+
+&lt;p&gt;Generando como resultado:&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/img06.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/img06.png&quot; style=&quot;&quot; alt=&quot;Salida de la build de Bicep en ARM&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Solo te faltaría escribir &lt;em&gt;y&lt;/em&gt; para desplegar la infraestructura.&lt;/p&gt;
+
+&lt;p&gt;Como podrá haber visto es más sencillo, fácil de leer y es nativo para Azure. Podría decirse que Bicep es el sucesor nativo de ARM. No pierdas de vista esta herramienta.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Sacando provecho de Swagger - parte 1</title>
+   <link href="./2021/03/29/MejorasSwaggerParte1/"/>
+   <updated>2021-03-29T03:00:00+00:00</updated>
+   <id>./2021/03/29/MejorasSwaggerParte1</id>
+   <content type="html">
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/29-Mejoras-Swagger-Parte1/swagger-banner.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/29-Mejoras-Swagger-Parte1/swagger-banner.png&quot; style=&quot;&quot; alt=&quot;Mejoras Swagger parte 1&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Vamos a empezar una serie de posts dedicados a sacar más provecho a Swagger y darle más valor a nuestra API.&lt;/p&gt;
+
+&lt;p&gt;Una vez hemos creado nuestra API y ya tenemos swagger instalado y funcionando, es buen momento para añadir más información y hacerlo más útil y usable. En concreto, el ejemplo se ha realizado con Visual Studio 2019, con una API en asp.net core 3.1 y con la versión de Swashbuckle.AspNetCore 5.0.0.&lt;/p&gt;
+
+&lt;h3 id=&quot;comentarios-xml&quot;&gt;&lt;strong&gt;Comentarios XML&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;El primer paso sería habilitar los comentarios XML. Esto nos servirá para añadir a cada endpoint información adicional:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;  
+    /// &lt;summary&gt;
+    /// Get example info.
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;id&quot; /&gt;Example id.&amp;lt;/param&amp;gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    [HttpGet(&quot;/example/{id}&quot;)]
+    public IActionResult GetExample(int id) =&amp;gt; Ok(id);
+&lt;/pre&gt;
+
+&lt;p&gt;Para que se lean y muestren los summaries en swagger primero tenemos que agregar unas líneas en el csproj del projecto de la API:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;xml&quot;&gt;  
+  &lt;PropertyGroup&gt;
+    &lt;GenerateDocumentationFile&gt;true&lt;/GenerateDocumentationFile&gt;
+  &lt;/PropertyGroup&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;No obstante, esto nos provocará un incómodo warning en cada método que no tenga summary:&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/29-Mejoras-Swagger-Parte1/warning.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/29-Mejoras-Swagger-Parte1/warning.png&quot; style=&quot;&quot; alt=&quot;Imagen warning&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Para que no aparezcan estos warngins los podemos deshabilitar añadiendo una línea más al anterior código del PropertyGroup:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;xml&quot;&gt;  
+  &lt;PropertyGroup&gt;
+    &lt;GenerateDocumentationFile&gt;true&lt;/GenerateDocumentationFile&gt;
+    &lt;NoWarn&gt;$(NoWarn);1591&lt;/NoWarn&gt;
+  &lt;/PropertyGroup&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;Ahora que hemos configurado la generación de los xml, tenemos que añadirlos en la configuración del swagger.&lt;/p&gt;
+
+&lt;p&gt;Para ello, en el Startup al configurar AddSwaggerGen añadiremos las siguientes líneas:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;  
+services.AddSwaggerGen(c =&amp;gt;
+{
+    //[...]
+    
+    var xmlFile = $&quot;{Assembly.GetExecutingAssembly().GetName().Name}.xml&quot;;
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
+    
+    //[...]
+});
+&lt;/pre&gt;
+
+&lt;p&gt;De esta forma, nos aparecerá está información cuando vayamos a llamar al endpoint en cuestión:&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/29-Mejoras-Swagger-Parte1/InfoEndpoint.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/29-Mejoras-Swagger-Parte1/InfoEndpoint.png&quot; style=&quot;&quot; alt=&quot;Imagen InfoEndpoint&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;En este punto, es interesante aprovechar para especificar las respuestas de dicho endpoint. Para ello podemos utilizar el atributo ProducesResponseTypeAttribute especificando los HttpStatusCodes que devolvemos. Adicionalmente, también se puede especificar un mensaje concreto para cada código de respuesta añadiendo tags ‘response’ en el summary:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;  
+    /// &lt;summary&gt;
+    /// Get example info.
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;id&quot; /&gt;Example id.&amp;lt;/param&amp;gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    /// &lt;response code=&quot;200&quot;&gt;Ok response.&lt;/response&gt;
+    /// &lt;response code=&quot;403&quot;&gt;Custom response for 403.&lt;/response&gt;
+    [HttpGet(&quot;/example/{id}&quot;)]
+    [ProducesResponseType(typeof(int), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.BadRequest)]
+    [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.Unauthorized)]
+    [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.Forbidden)]
+    [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.NotFound)]
+    public IActionResult GetExample(int id) =&amp;gt; Ok(id);
+&lt;/pre&gt;
+
+&lt;p&gt;Con esto, ahora swagger nos mostrará, además de la response (200 - Success) que hemos visto antes, un ErrorResponse para los códigos 400, 401, 403 y 403. Y en concreto, un mensaje personalizado para el código 200 y para el 403. .&lt;/p&gt;
+
+&lt;p&gt;A las respuestas de error, le hemos añadido un tipo de respuesta propio (ErrorResponse) no es obligatorio, pero es recomendable.&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/29-Mejoras-Swagger-Parte1/responses.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/29-Mejoras-Swagger-Parte1/responses.png&quot; style=&quot;&quot; alt=&quot;Imagen responses&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Arrancando SQL Server en docker linux</title>
+   <link href="./2021/03/15/arrancando-sql-server-docker/"/>
+   <updated>2021-03-15T03:00:00+00:00</updated>
+   <id>./2021/03/15/arrancando-sql-server-docker</id>
+   <content type="html">
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/15-arrancando-sql-server-docker/sqlserver_docker_min.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/15-arrancando-sql-server-docker/sqlserver_docker_min.png&quot; style=&quot;&quot; alt=&quot;SQL Server + Docker&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+&lt;p&gt;Si quieres arrancar rápidamente un SQL Server lo mejor es usar docker. Y con más razón si ya tienes WSL2 instalado 😀, y si todavía no lo tienes échale un vistazo a la &lt;a href=&quot;https://docs.microsoft.com/es-es/windows/wsl/install-win10&quot;&gt;guía de instalación&lt;/a&gt;.
+Esto puede resultar muy útil para no tener que instalar un entorno completo localmente.
+En la &lt;a href=&quot;https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&amp;amp;pivots=cs1-bash&quot;&gt;documentación oficial&lt;/a&gt; tienes toda la info. Yo lo he resumido con algunos cambios aquí:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;bash&quot;&gt;
+docker run 
+  --name sql1 
+  -h sql1 
+  -e 'ACCEPT_EULA=Y' 
+  -e 'SA_PASSWORD=MiPa$$w0rd' 
+  -e 'MSSQL_PID=Enterprise' 
+  -p 11433:1433 
+  -d 
+  mcr.microsoft.com/mssql/server:2019-latest
+&lt;/pre&gt;
+
+&lt;p&gt;Yo ya tenía el puerto 1433 ocupado en mi máquina por lo que he mapeado la imagen al puerto 11433.&lt;/p&gt;
+
+&lt;p&gt;Para conectarte usando el Management Studio:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Server: 127.0.0.1,11433  (el puerto se indica separando con una coma)&lt;/li&gt;
+  &lt;li&gt;User: SA&lt;/li&gt;
+  &lt;li&gt;Password: la que hayáis indicado al arrancar el contenedor.&lt;/li&gt;
+  &lt;li&gt;Vamos a Options y en la &lt;em&gt;Additional Connection Parameters&lt;/em&gt; debemos añadir &lt;code class=&quot;highlighter-rouge&quot;&gt;TrustServerCertificate=True&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/15-arrancando-sql-server-docker/mmssqlserver_connections.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/15-arrancando-sql-server-docker/mmssqlserver_connections.png&quot; style=&quot;&quot; alt=&quot;Instrucciones para conectar Management Studio&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Todo funcionando.&lt;/p&gt;
+
+&lt;p&gt;Ahora cuando no lo necesites puedes detener el contenedor con &lt;code class=&quot;highlighter-rouge&quot;&gt;docker stop sql1&lt;/code&gt; de esta manera no te consume recursos de la máquina. 
+&lt;br /&gt;Y lo arrancas con &lt;code class=&quot;highlighter-rouge&quot;&gt;docker start sql1&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Fácil y sencillo.&lt;/p&gt;
+
+&lt;p&gt;Happy codding!&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Qué es Swagger y cómo añadirlo a tu Api de NetCore</title>
+   <link href="./2021/03/01/Add-Swagger-To-Net-Core-Api/"/>
+   <updated>2021-03-01T03:01:00+00:00</updated>
+   <id>./2021/03/01/Add Swagger To Net Core Api</id>
+   <content type="html">
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/swaggerandcore.jpg&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/swaggerandcore.jpg&quot; style=&quot;&quot; alt=&quot;Add Swagger to Net Core Api&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;qué-es-swagger&quot;&gt;¿Qué es swagger?&lt;/h3&gt;
+
+&lt;p&gt;Swagger es una serie de reglas, especificaciones y herramientas que nos ayudan a documentar nuestras APIs. En otras palabras, al instalarlo, y ejecutar la API se nos generará una interfaz de usuario que nos permite navegar sobre los diferentes endpoints que tenga nuestra API de manera fácil e intuitiva. Es una herramienta muy útil a la hora de testear nuestras aplicaciones.&lt;/p&gt;
+
+&lt;h3 id=&quot;cómo-lo-usamos&quot;&gt;¿Cómo lo usamos?&lt;/h3&gt;
+&lt;p&gt;Para utilizar swagger lo primero que debemos hacer es instalarlo, obviamente.&lt;/p&gt;
+
+&lt;p&gt;Vamos al gestor de Nuget de nuestra API (Manage Nuget Packages) y buscamos el nuget Swashbuckle.AspNetCore:&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/nuget.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/nuget.png&quot; style=&quot;&quot; alt=&quot;Imagen nuget&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Lo siguiente que debemos hacer es registrar el servicio de swagger en nuestra ServiceCollection (clase Startup.cs, método ConfigureServices) añadiendo éstas líneas.&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/registerService.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/registerService.png&quot; style=&quot;&quot; alt=&quot;Imagen register service&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;También tendremos que añadir una breve configuración (clase Startup, método Configure) para indicar la ruta donde se ejecutará el swagger, así como también un nombre para la documentación que se nos va a generar.&lt;/p&gt;
+
+&lt;p&gt;En mi caso quiero que se ejecute en el directorio raíz de la aplicación y por lo tanto configuraré la propiedad RoutePrefix como cadena vacía.&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/configure.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/configure.png&quot; style=&quot;&quot; alt=&quot;Imagen configure&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Llegados a este punto ya podemos ejecutar nuestra API y comprobar lo de lo que es capaz nuestro asistente para documentación y testing.&lt;/p&gt;
+
+&lt;p&gt;En las siguientes imágenes podemos ver un ejemplo paso a paso:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Vista preliminar:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/ej1.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/ej1.png&quot; style=&quot;&quot; alt=&quot;Imagen ejemplo1&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Método Get Simple:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/ej2.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/ej2.png&quot; style=&quot;&quot; alt=&quot;Imagen ejemplo2&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Método Post con asistente de creación del objeto:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/ej3.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/ej3.png&quot; style=&quot;&quot; alt=&quot;Imagen ejemplo3&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Fácil y sencillo. 
+&lt;br /&gt;Hasta la próxima.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Hello world!</title>
+   <link href="./2021/03/01/Hello-World/"/>
+   <updated>2021-03-01T03:00:00+00:00</updated>
+   <id>./2021/03/01/Hello-World</id>
+   <content type="html">
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/01-Hello-World/hello-toris.jpg&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/01-Hello-World/hello-toris.jpg&quot; style=&quot;&quot; alt=&quot;Hello World!&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Hello World!&lt;/p&gt;
+
+&lt;p&gt;Con estas palabras, y su significado desde los inicios del mundo de la programación, comenzamos este nuevo rincón en donde compartir nuestras inquietudes tecnológicas, englobado al mundo del desarrollo de software, infraestructura, cloud, web, móvil, innovación…&lt;/p&gt;
+
+&lt;p&gt;Un rincón creado con la pasión de todos nuestros tokiotas por compartir el conocimiento.&lt;/p&gt;
+
+&lt;p&gt;Gracias.
+&lt;br /&gt;ありがとう。&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Creando plantillas ARM</title>
+   <link href="./2020/12/27/2021-mm-dd-creando-plantillas-arm/"/>
+   <updated>2020-12-27T23:00:00+00:00</updated>
+   <id>./2020/12/27/2021-mm-dd-creando-plantillas-arm</id>
+   <content type="html">
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/draft/creando-plantillas-arm/portada-arm-min.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/draft/creando-plantillas-arm/portada-arm-min.png&quot; style=&quot;&quot; alt=&quot;Imagen portada del articulo logo de fichero json y plantilla ARM.&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;urls-de-referencia&quot;&gt;Urls de referencia&lt;/h1&gt;
+&lt;p&gt;Puedes aprender más sobre plantillas ARM en el path de Microsoft Learn:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/es-es/learn/paths/deploy-manage-resource-manager-templates/&quot;&gt;https://docs.microsoft.com/es-es/learn/paths/deploy-manage-resource-manager-templates/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;https://techcommunity.microsoft.com/t5/apps-on-azure/learn-arm-templates-4-tutorials-from-the-beginning/ba-p/1803802&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Guía de estilos para los artículos</title>
+   <link href="./2020/10/19/00_Guia-estilo-articulos/"/>
+   <updated>2020-10-19T23:00:00+00:00</updated>
+   <id>./2020/10/19/00_Guia-estilo-articulos</id>
+   <content type="html">
+&lt;p&gt;Esta entrada de blog sirve a modo de guía de estilos y recursos a usar para hacer que los artículos brillen correctamente.
+Para ver como se escribe cada sección, accede al código de este fichero &lt;b&gt;00_Guía-estilo.artículos.md&lt;/b&gt;. 
+Este mismo fichero no deja de ser un artículo en sí mismo para usar de modelo.&lt;/p&gt;
+
+&lt;p&gt;Aquí tienes un índice de la guía:
+&lt;!-- TOC --&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#antes-de-empezar&quot;&gt;Antes de empezar&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#cómo-empiezo&quot;&gt;Cómo empiezo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#metadatos-del-artículo&quot;&gt;Metadatos del artículo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#qué-foto-pongo-para-el-autor&quot;&gt;Qué foto pongo para el autor&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#cómo-obtengo-la-foto&quot;&gt;Cómo obtengo la foto&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#cómo-se-ponen-los-títulos&quot;&gt;Cómo se ponen los títulos&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#cómo-añadir-un-enlace&quot;&gt;Cómo añadir un enlace&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#cómo-añadir-una-imágen&quot;&gt;Cómo añadir una imágen&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#donde-subir-las-imágenes&quot;&gt;Donde subir las imágenes&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#cómo-añadir-notas&quot;&gt;Cómo añadir notas&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#cómo-añadir-fragmentos-de-código&quot;&gt;Cómo añadir fragmentos de código&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#cómo-escribir-una-tabla-de-datos&quot;&gt;Cómo escribir una tabla de datos&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- /TOC --&gt;
+
+&lt;h1 id=&quot;antes-de-empezar&quot;&gt;Antes de empezar&lt;/h1&gt;
+&lt;p&gt;&lt;b&gt;Escribe el artículo&lt;/b&gt;
+Olvídate de esta guía y de la maquetación en &lt;em&gt;Markdown&lt;/em&gt;. Escribe el artículo en un Word, sin faltas de ortografía, envíaselo a tu TeamLead o responsable (porque dos ojos siempre ayudan). Cuando lo tengas listo, vuelve aquí y lo maquetamos.&lt;/p&gt;
+
+&lt;h1 id=&quot;cómo-empiezo&quot;&gt;Cómo empiezo&lt;/h1&gt;
+&lt;p&gt;Bien, si has llegado hasta aquí, es que ya tienes tu artículo escrito y revisado.&lt;/p&gt;
+
+&lt;p&gt;Crea un fichero en blanco sobre la carpeta _post con la siguiente nomenclatura:
+&lt;br /&gt;&lt;b&gt;yyyy-MM-dd-mi-titulo-del-articulo.md&lt;/b&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;metadatos-del-artículo&quot;&gt;Metadatos del artículo&lt;/h1&gt;
+&lt;p&gt;Todo artículo necesita especificar unos datos que se sitúan al inicio del fichero y se delimitan entre dos líneas con tres guiones.&lt;/p&gt;
+&lt;pre data-enlighter-language=&quot;raw&quot;&gt;
+---
+published: false
+date: 2100-12-12 00:00:00 +0100
+layout: post
+title: &quot;Guía de estilos para los artículos&quot;
+summary: &quot;Este es un resumen largo del artículo que se usará de entradilla en la pantalla Home. aquí tambien se admiten tags html para palabras en &lt;b&gt;negrita&lt;/b&gt;, en &lt;i&gt;cursiva&lt;/i&gt;, enlaces a alguna &lt;a href=&quot;https://tokiota.com&quot;&gt;página web&lt;/a&gt; y mismo emojis ⛩😃⛩.&lt;p&gt; Si no sabes como ponerlos es tan fácil como pulsar dos teclas [WIN]+[.] y de saldrá un menú donde elegir (al menos en Windows10).&lt;/p&gt;&quot;
+excerpt: &quot;Una guía para hacer que nuestros artículos del blog brillen como es debido.&quot;
+categories: [Tokiota] # Desarrollo, Infraestructura, Bizpro, Management, Tokiotas, Eventos
+tags: [blog] # siempre en minúsculas
+featured_image: /public/uploads/2020/10/20-guia-de-estilos-para-articulos/blog.jpg
+pathToPublicFolder: &quot;public/uploads/2020/10/20-guia-de-estilos-para-articulos&quot;
+author:
+  name: &quot;Tokiota&quot;
+  image: tokiota.jpg
+  signText: &quot;Tokiota Team&quot;
+---
+{% assign pathPublicFolder = site.baseurl | append: page.pathToPublicFolder %}
+&lt;/pre&gt;
+
+&lt;p&gt;A continuación explico cada uno:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;b&gt;published&lt;/b&gt;: Acepta los valores &lt;i&gt;true&lt;/i&gt; o &lt;i&gt;false&lt;/i&gt;. S
+    &lt;ul&gt;
+      &lt;li&gt;true: será procesado y publicado el artículo.&lt;/li&gt;
+      &lt;li&gt;false: si quieres que sea ignorado y no publicado.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;b&gt;date&lt;/b&gt;: La fecha que se establezca será la de publicación. Es decir si pones una futura el artículo se procesará para publicarse ese día. &lt;b&gt;Poner el formato fecha como en el ejemplo.&lt;/b&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;b&gt;layout&lt;/b&gt;: su valor es siempre &lt;b&gt;post&lt;/b&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;b&gt;title&lt;/b&gt;: aquí escribe tu título del articulo&lt;/li&gt;
+  &lt;li&gt;&lt;b&gt;excerpt&lt;/b&gt;: una descripción breve. este texto será usado cuando se comparta tu artículo en redes sociales.&lt;/li&gt;
+  &lt;li&gt;&lt;b&gt;categories&lt;/b&gt;: están delimitadas en 4 categorías que son las siguientes &lt;b&gt;respetar el texto exacto&lt;/b&gt;:
+    &lt;ul&gt;
+      &lt;li&gt;Desarrollo&lt;/li&gt;
+      &lt;li&gt;Infraestructura&lt;/li&gt;
+      &lt;li&gt;Business Productivity&lt;/li&gt;
+      &lt;li&gt;Tokiota&lt;/li&gt;
+      &lt;li&gt;Eventos&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;b&gt;tags&lt;/b&gt;: array de las tecnologías que quieran detallarse. &lt;b&gt;Se escriben en minúsculas&lt;/b&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;b&gt;featured_image&lt;/b&gt;: es la ruta a la imágen que se visualizará en la entradilla de inicio y en las tarjetas de visualización al compartir en redes sociales. Crea la carpeta siguiendo la misma regla y nomenclatura. Más detalle en la sección &lt;a href=&quot;#donde-subir-las-imágenes&quot;&gt;Donde subir las imágenes&lt;/a&gt;].&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;b&gt;pathToImages&lt;/b&gt;: “es la ruta a la carpeta donde se alojarán las imágenes de este blog.”&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;b&gt;summary&lt;/b&gt;: Este es un resumen largo del artículo que se usará de entradilla en la pantalla Home. aquí tambien se admiten tags html para palabras en &lt;b&gt;negrita&lt;/b&gt;, en &lt;i&gt;cursiva&lt;/i&gt;, enlaces a alguna &lt;a href=&quot;https://tokiota.com&quot;&gt;página web&lt;/a&gt; y mismo emojis ⛩😃⛩. Si no sabes como ponerlos es tan fácil como pulsar dos teclas [WIN]+[.] y de saldrá un menú donde elegir (al menos en Windows10).&lt;/li&gt;
+  &lt;li&gt;&lt;b&gt;author name&lt;/b&gt;: Nombre de la persona autora del artículo.&lt;/li&gt;
+  &lt;li&gt;&lt;b&gt;author image&lt;/b&gt;: Foto del autor/a. Debe alojarse en la carpeta &lt;b&gt;public/img/authors&lt;/b&gt;. &lt;a href=&quot;#¿qué-foto-pongo-para-el-autor?&quot;&gt;Ver aquí más detalle.&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;b&gt;author signText&lt;/b&gt;: texto que&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;variables-de-página&quot;&gt;Variables de página&lt;/h2&gt;
+&lt;p&gt;Tras los &lt;code class=&quot;highlighter-rouge&quot;&gt;---&lt;/code&gt; tenemos definido una variable de página:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;b&gt;pathPublicFolder&lt;/b&gt;: será usada para incluir una imágen o cualquier enlace a fichero ya que es una url a la carpeta donde se alojar imágenes o ficheros adjuntos usados en artículo.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;qué-foto-pongo-para-el-autor&quot;&gt;Qué foto pongo para el autor&lt;/h1&gt;
+&lt;p&gt;Primero busca la imagen en &lt;b&gt;public/img/authors&lt;/b&gt;, puede que ya exista.&lt;/p&gt;
+
+&lt;p&gt;Si hay que añadir una nueva, mi consejo es descargar la imagen que sale con tu usuario en Teams.&lt;/p&gt;
+&lt;h2 id=&quot;cómo-obtengo-la-foto&quot;&gt;Cómo obtengo la foto&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Entra con tu cuenta de Tokiota en &lt;a href=&quot;https://outlook.office.com/people/&quot;&gt;https://outlook.office.com/people/&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Buscas a la persona y la seleccionas.&lt;/li&gt;
+  &lt;li&gt;Botón derecho en la imagen&lt;/li&gt;
+  &lt;li&gt;Guardar como, a la carpeta &lt;b&gt;public/img/authors&lt;/b&gt;. Nombramos al fichero con &lt;strong&gt;nombre_apellido1_apellido2.jpg&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/draft/guia-de-estilos-para-articulos/obtener_imagen_autor.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/draft/guia-de-estilos-para-articulos/obtener_imagen_autor.png&quot; style=&quot;&quot; alt=&quot;Como descargar la imagen desde outlook web&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;cómo-se-ponen-los-títulos&quot;&gt;Cómo se ponen los títulos&lt;/h1&gt;
+&lt;p&gt;Así se escriben los títulos&lt;/p&gt;
+&lt;pre data-enlighter-language=&quot;markdown&quot;&gt;
+# Esto es un Título 1
+## Esto es un Título 2
+### Esto es un Título 3
+#### Esto es un Título 4
+##### Esto es un Título 5
+###### Esto es un Título 6
+&lt;/pre&gt;
+&lt;p&gt;y así salen:&lt;/p&gt;
+&lt;h1 id=&quot;esto-es-un-título-1&quot;&gt;Esto es un Título 1&lt;/h1&gt;
+&lt;h2 id=&quot;esto-es-un-título-2&quot;&gt;Esto es un Título 2&lt;/h2&gt;
+&lt;h3 id=&quot;esto-es-un-título-3&quot;&gt;Esto es un Título 3&lt;/h3&gt;
+&lt;h4 id=&quot;esto-es-un-título-4&quot;&gt;Esto es un Título 4&lt;/h4&gt;
+&lt;h5 id=&quot;esto-es-un-título-5&quot;&gt;Esto es un Título 5&lt;/h5&gt;
+&lt;h6 id=&quot;esto-es-un-título-6&quot;&gt;Esto es un Título 6&lt;/h6&gt;
+
+&lt;h1 id=&quot;estilos-de-letras&quot;&gt;Estilos de letras:&lt;/h1&gt;
+&lt;p&gt;Hay dos maneras&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Formato Markdown&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre data-enlighter-language=&quot;markdown&quot;&gt;
+*Cursiva*
+**Negrita**
+&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Formato HTML:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre data-enlighter-language=&quot;html&quot;&gt;
+&lt;i&gt;Cursiva&lt;/i&gt;
+&lt;b&gt;Negrita&lt;/b&gt;
+&lt;/pre&gt;
+
+&lt;h1 id=&quot;cómo-añadir-un-enlace&quot;&gt;Cómo añadir un enlace&lt;/h1&gt;
+&lt;p&gt;Esto lo haremos por nomenclatura Markdown. 
+Pero intentaremos seguir lo siguiente:&lt;/p&gt;
+&lt;pre data-enlighter-language=&quot;markdown&quot;&gt;
+[Nuestro texto aquí](https://nuestroenlace.com/aquui){:target=&quot;_blank&quot;}.
+&lt;/pre&gt;
+
+&lt;h1 id=&quot;cómo-añadir-una-imágen&quot;&gt;Cómo añadir una imágen&lt;/h1&gt;
+&lt;p&gt;La forma más facil de insertar una imágen es haciendo uso del siguietne fragmento de código indicando el fichero de la imagen y el texto alternativo:&lt;/p&gt;
+&lt;pre data-enlighter-language=&quot;markdown&quot;&gt;
+
+{% include code_image.html path=pathPublicFolder
+image='tokiota_foto.jpg'
+title='Texto alternativo a la imagen'
+style=''
+%}
+&lt;/pre&gt;
+&lt;p&gt;Y se verá esto:&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/draft/guia-de-estilos-para-articulos/tokiota_foto.jpg&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/draft/guia-de-estilos-para-articulos/tokiota_foto.jpg&quot; style=&quot;&quot; alt=&quot;Texto alternativo a la imagen&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;donde-subir-las-imágenes&quot;&gt;Donde subir las imágenes&lt;/h2&gt;
+&lt;p&gt;Las imágenes deberán ser alojadas en la carpeta indicada en la sección de configuración &lt;b&gt;pathToPublicFolder&lt;/b&gt;. 
+Tendremos que crear la carpeta siguiendo la regla y la nomenclatura:
+&lt;br /&gt;&lt;b&gt;public/uploads/yyyy/MM/dd-mi-titulo-del-articulo&lt;/b&gt;.&lt;/p&gt;
+
+&lt;p&gt;Es importante que el nombre de la carpeta sea en &lt;b&gt;minúsculas&lt;/b&gt; y &lt;b&gt;sin espacios en en blanco&lt;/b&gt;, usando guiones.&lt;/p&gt;
+
+&lt;div class=&quot;note note&quot;&gt;
+    &lt;span class=&quot;notetitle&quot;&gt;
+        
+        Nota:
+        
+    &lt;/span&gt; 
+Siempre puedes hacer uso de código html para incluir imágenes de urls externas pero evitaremos esta práctica en la medida de lo posible porque si la url externa cambia o desaparece el artículo pierde valor. Sería mejor hacer una copia a nuestra carpeta y citar fuente/autor.
+&lt;/div&gt;
+
+&lt;h1 id=&quot;cómo-añadir-notas&quot;&gt;Cómo añadir notas&lt;/h1&gt;
+&lt;p&gt;Para insertar una nota como esta:&lt;/p&gt;
+
+&lt;div class=&quot;note note&quot;&gt;
+    &lt;span class=&quot;notetitle&quot;&gt;
+        
+        Nota:
+        
+    &lt;/span&gt; 
+En el texto a incluir puedes poner palabras en &lt;b&gt;negrita&lt;/b&gt;, en &lt;i&gt;cursiva&lt;/i&gt;, emojis😉, etc.. lo que sea pero haciendo uso de tags HTML. 
+&lt;p style=&quot;text-decoration: underline;&quot;&gt;En este texto no se puede usar la nomenclatura Markdown, por ejemplo para poner esto en **negrita**.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;pre data-enlighter-language=&quot;markdown&quot;&gt;
+
+{% include code_note.html 
+content='Aquí escribe el texto.' 
+%}
+&lt;/pre&gt;
+
+&lt;h1 id=&quot;cómo-añadir-fragmentos-de-código&quot;&gt;Cómo añadir fragmentos de código&lt;/h1&gt;
+
+&lt;p&gt;Para visualizar un fragmento de código así:&lt;/p&gt;
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;
+using static System.Console;
+class Program
+{
+  static void Main(string[] args)
+  {
+      string s = null;
+      WriteLine($&quot;The first letter of {s} is {s[0]}&quot;); //Se produce un error porque s es null ---&amp;gt; NullReferenceException
+  }
+}
+&lt;/pre&gt;
+
+&lt;p&gt;pondremos lo siguiente:&lt;/p&gt;
+&lt;pre data-enlighter-language=&quot;raw&quot;&gt;
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;
+  
+  /* aquí el código */
+&lt;/pre&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;En el atributo &lt;em&gt;data-enlighter-language&lt;/em&gt; pondremos uno de los valores disponibles en la siguiente tabla:&lt;/p&gt;
+&lt;table class=&quot;simpleTable&quot;&gt;
+  &lt;thead&gt;
+    &lt;th&gt;Lenguaje&lt;/th&gt;
+    &lt;th&gt;valores (solo uno)&lt;/th&gt;
+    &lt;th&gt;detalle&lt;/th&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td&gt;AVR Assembly 	&lt;/td&gt;&lt;td&gt;avrassembly, avrasm	&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;C/C++ 			  &lt;/td&gt;&lt;td&gt;c,cpp, c++				    &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;C# 				    &lt;/td&gt;&lt;td&gt;csharp					      &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;CSS 			    &lt;/td&gt;&lt;td&gt;css					        &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Cython 			  &lt;/td&gt;&lt;td&gt;cython					      &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;CordPro 		  &lt;/td&gt;&lt;td&gt;cordpro				      &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;diff 			    &lt;/td&gt;&lt;td&gt;diff					        &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Dockerfile 		&lt;/td&gt;&lt;td&gt;docker, dockerfile		&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Generic 		  &lt;/td&gt;&lt;td&gt;generic, standard		&lt;/td&gt;&lt;td&gt;default highlighting scheme&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Groovy 			  &lt;/td&gt;&lt;td&gt;groovy					      &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Go 				    &lt;/td&gt;&lt;td&gt;go, golang				    &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;HTML 			    &lt;/td&gt;&lt;td&gt;html			      		  &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Ini 			    &lt;/td&gt;&lt;td&gt;ini, conf			    	&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Java 			    &lt;/td&gt;&lt;td&gt;java					        &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Javascript 		&lt;/td&gt;&lt;td&gt;js, javascript, jquery, mootools, ext.js&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;JSON 			    &lt;/td&gt;&lt;td&gt;json					        &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Kotlin 			  &lt;/td&gt;&lt;td&gt;kotlin				        &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;LESS 		  	  &lt;/td&gt;&lt;td&gt;less					        &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;LUA 		  	  &lt;/td&gt;&lt;td&gt;lua					        &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Markdown 		  &lt;/td&gt;&lt;td&gt;gfm, md, markdown		&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Matlab/Octave &lt;/td&gt;&lt;td&gt;octave, matlab	  		&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;NSIS 		  	  &lt;/td&gt;&lt;td&gt;nsis			      	  	&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;PHP 			    &lt;/td&gt;&lt;td&gt;php					        &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Powerhsell 		&lt;/td&gt;&lt;td&gt;powershell				    &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Prolog 		  	&lt;/td&gt;&lt;td&gt;prolog					      &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Python 		  	&lt;/td&gt;&lt;td&gt;py, python				    &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;PureBasic 		&lt;/td&gt;&lt;td&gt;purebasic, pb			  &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;RAW 		    	&lt;/td&gt;&lt;td&gt;raw					        &lt;/td&gt;&lt;td&gt;raw code without highlighting with EnlighterJS container styles!&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Ruby 	    		&lt;/td&gt;&lt;td&gt;ruby					        &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Rust 			    &lt;/td&gt;&lt;td&gt;rust					        &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;SCSS 			    &lt;/td&gt;&lt;td&gt;scss, sass				    &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Shellscript 	&lt;/td&gt;&lt;td&gt;shell, bash			    &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;SQL 			    &lt;/td&gt;&lt;td&gt;sql					        &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Squirrel 	  	&lt;/td&gt;&lt;td&gt;squirrel				      &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Swift 			  &lt;/td&gt;&lt;td&gt;swift					      &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Typescript 		&lt;/td&gt;&lt;td&gt;typescript				    &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;VHDL 			    &lt;/td&gt;&lt;td&gt;vhdl				        	&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;VisualBasic 	&lt;/td&gt;&lt;td&gt;visualbasic, vb	  	&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Verilog 		  &lt;/td&gt;&lt;td&gt;verilog			      	&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;XML 			    &lt;/td&gt;&lt;td&gt;xml				        	&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+	  &lt;tr&gt;&lt;td&gt;YAML 		     	&lt;/td&gt;&lt;td&gt;yaml				       	  &lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;  
+&lt;/table&gt;
+
+&lt;p&gt;Esta info está sacada de la version v3 del proyecto &lt;a href=&quot;https://github.com/EnlighterJS/EnlighterJS&quot; target=&quot;_blank&quot;&gt;EnlighterJS en Github&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;note note&quot;&gt;
+    &lt;span class=&quot;notetitle&quot;&gt;
+        
+        Nota:
+        
+    &lt;/span&gt; 
+Existe otra manera de indicar código con Markdown pero no se hará uso en este blog porque EnlighterJS es más potente.
+&lt;/div&gt;
+
+&lt;p&gt;Es recomendable no usar &lt;a href=&quot;https://gist.github.com/&quot; target=&quot;_blank&quot;&gt;Gist&lt;/a&gt; para fragmentos de código porque la información del artículo queda dependiente de otra plataforma y puede perderse.
+Es por ello que él código que se quiera explicar &lt;b&gt;debe incluirse en el artículo.&lt;/b&gt; 
+Si queremos dejar un ejemplo completo de un proyecto es recomendable abrir uno en  GitHub sobre la cuenta de organización de Tokiota.&lt;/p&gt;
+
+&lt;h1 id=&quot;cómo-escribir-una-tabla-de-datos&quot;&gt;Cómo escribir una tabla de datos&lt;/h1&gt;
+&lt;p&gt;La recomendación es hacerlo en formato html porque el markdown a veces no renderiza por culpa de algun carácter.&lt;/p&gt;
+&lt;pre data-enlighter-language=&quot;html&quot;&gt;
+&lt;table class=&quot;simpleTable&quot;&gt;
+  &lt;thead&gt;
+    &lt;th&gt;Cabecera 1&lt;/th&gt;
+    &lt;th&gt;Cabecera 2&lt;/th&gt;
+    &lt;th&gt;Cabecera 3&lt;/th&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td&gt;texto&lt;/td&gt;&lt;td&gt;texto&lt;/td&gt;&lt;td&gt;texto&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;texto&lt;/td&gt;&lt;td&gt;texto&lt;/td&gt;&lt;td&gt;texto&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;texto&lt;/td&gt;&lt;td&gt;texto&lt;/td&gt;&lt;td&gt;texto&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Si crees que puedes mejorar la guía bienvenido sea. Toda mejora será bienvenida.&lt;/p&gt;
+
+&lt;p&gt;Saludos!&lt;/p&gt;
+</content>
+ </entry>
+ 
+
+</feed>

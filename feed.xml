@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="./feed.xml" rel="self" type="application/atom+xml" /><link href="./" rel="alternate" type="text/html" /><updated>2021-05-20T18:49:34+00:00</updated><id>./feed.xml</id><title type="html">Blog de Tokiotas</title><subtitle>El viaje más largo comienza con un primer paso.</subtitle><entry><title type="html">Hybrid File Server</title><link href="./2021/06/21/Hybrid_file_server/" rel="alternate" type="text/html" title="Hybrid File Server" /><published>2021-06-21T03:00:00+00:00</published><updated>2021-06-21T03:00:00+00:00</updated><id>./2021/06/21/Hybrid_file_server</id><content type="html" xml:base="./2021/06/21/Hybrid_file_server/">&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/06/21-hybrid-fil-server/diff_hybrid_file_server.jpg&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/06/21-hybrid-fil-server/diff_hybrid_file_server.jpg&quot; style=&quot;&quot; alt=&quot;Hybrid file Server&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+&lt;p&gt;La acumulación de archivos y documentos en nuestros servidores de ficheros puede ser preocupante, pues implica la necesidad de eliminar o archivar documentos para liberar espacio y/o ampliar cabina/discos. Esto se suele traducir en malestar por parte del usuario y/o en un desembolso económico. Todo ello sin contar con la infraestructura a montar en el caso de tener diferentes sedes en diferentes lugares geográficos ni tampoco en las soluciones de &lt;em&gt;backup&lt;/em&gt; a implementar.&lt;/p&gt;
+
+&lt;p&gt;Es cierto que existen diferentes tipos de infraestructuras para solucionar estos problemas. Desde Tokiota presentamos una solución para solventarlos y, además, tener una recuperación ante un desastre de nuestros servidores de ficheros rápido y sencillo. Nosotros la hemos llamado &lt;em&gt;Hybrid File Server&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Utilizamos el concepto de &lt;em&gt;Hybrid File&lt;/em&gt; Server al hecho de centralizar los datos de un servidor de ficheros en un servicio de almacenaje en Azure y tener en nuestra infraestructura &lt;em&gt;On Premise&lt;/em&gt; uno o varios servidores de ficheros con el objetivo de utilizarlo/s como cache de archivos.&lt;/p&gt;
+
+&lt;p&gt;Este sistema consiste en guardar la totalidad de nuestros archivos en una cuenta de almacenamiento de Azure y tener un subconjunto de los documentos vivos, los más utilizados, en el servidor o servidores de ficheros estableciendo una sincronización activa y bidireccional. Esta sincronización puede realizarse con un total de 30 servidores de ficheros distintos.&lt;/p&gt;
+
+&lt;p&gt;Al utilizar la política de nube por niveles (&lt;em&gt;cloud tiering policy&lt;/em&gt;), el espacio ocupado en nuestra infraestructura On Premise por el servidor de ficheros podrá verse reducido en un 50%, un 60% o incluso un 90%. El funcionamiento de esta política consiste en generar punteros de los documentos menos usados de nuestro servidor de ficheros. Estos punteros contendrán los metadatos del fichero y un enlace a nuestro fichero en Azure. En el momento de abrir el puntero, el fichero se descargará automáticamente en nuestro servidor de ficheros ocupando así la totalidad del tamaño del fichero y pudiendo ser utilizado por el usuario.&lt;/p&gt;
+
+&lt;p&gt;La arquitectura descrita es completamente transparente al usuario a nivel operacional, aunque sí que el usuario podrá detectar si un archivo está vivo o es un puntero.&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/06/21-hybrid-fil-server/diff_hybrid_file_server.jpg&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/06/21-hybrid-fil-server/diff_hybrid_file_server.jpg&quot; style=&quot;&quot; alt=&quot;Carpeta con/sin Hybrid File Server configurado&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Los usuarios experimentaran un pequeño retraso en el primer acceso al puntero, esta acción descargará la totalidad del fichero. A partir de este momento, el fichero pasará a ser un documento vivo, si no se vuelve a acceder al documento, se volverá a transformar en puntero.&lt;/p&gt;
+
+&lt;p&gt;En Azure Storage se mantendrá la totalidad de los ficheros, pudiendo así delegar la copia de seguridad del servidor de ficheros a Azure. Esta copia de seguridad puede ser programada y gestionada desde el portal de Azure, sin la necesidad de ninguna herramienta de terceros ni preocuparse por el tiempo de copia. Las opciones de recuperación permiten la recuperación granular, llegando a nivel de ficheros.&lt;/p&gt;
+
+&lt;p&gt;La recuperación ante desastres es uno de los puntos más fuertes de esta arquitectura. En el supuesto que el servidor de ficheros quedase inoperativo, independientemente del problema, la recuperación de este servicio es rápida y sencilla. Únicamente se tendrá que desplegar un nuevo servidor de ficheros, habilitar la sincronización con Azure y el servicio estará reestablecido. Con esta solución no es necesario la recuperación del servidor de ficheros de una copia de seguridad, lo que implica un gran ahorro de tiempo y esfuerzo.&lt;/p&gt;
+
+&lt;p&gt;Así de eficiente puede llegar a ser la solución de &lt;em&gt;Hybrid File Server&lt;/em&gt;, ofreciendo grandes mejoras y facilitando la gestión de nuestro servidor de ficheros.&lt;/p&gt;</content><author><name>Daniel Camacho Rodríguez</name></author><category term="hybrid" /><category term="fileserver" /><category term="azure" /><summary type="html">Os traemos nuevo artículo donde conocer la solución Hybrid File Server. Olvídate de liberar espacio en tus servidores constantemente y de preocuparte por los backups, que Azure se encargue.</summary></entry><entry><title type="html">Sacando provecho de Swagger - parte 3</title><link href="./2021/05/25/MejorasSwaggerParte3/" rel="alternate" type="text/html" title="Sacando provecho de Swagger - parte 3" /><published>2021-05-25T03:00:00+00:00</published><updated>2021-05-25T03:00:00+00:00</updated><id>./2021/05/25/MejorasSwaggerParte3</id><content type="html" xml:base="./2021/05/25/MejorasSwaggerParte3/">&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/05/25-Mejoras-Swagger-Parte3/swagger-banner.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/05/25-Mejoras-Swagger-Parte3/swagger-banner.png&quot; style=&quot;&quot; alt=&quot;Mejoras Swagger parte 1&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Ya tenemos el tercer post de la serie, ya hemos visto comentarios XML y los ISchemaFilter. Hoy veremos content-type y headers.&lt;/p&gt;
+
+&lt;p&gt;Recordamos que tenemos una API en asp.net core 3.1 y con la versión de Swashbuckle.AspNetCore 5.0.0.&lt;/p&gt;
+
+&lt;h3 id=&quot;fijar-content-type-applicationjson&quot;&gt;&lt;strong&gt;Fijar content type application/json&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;Si nuestra API solo va a aceptar y devolver contenido de tipo json, es recomendar fijar estos parámetros. Para ello utilizamos los atributos ‘Consumes’ y ‘Produces’ de Microsoft.AspNetCore.Mvc.&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;  
+    /// &lt;summary&gt;
+    /// Get example info.
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;id&quot; /&gt;Example id.&amp;lt;/param&amp;gt;
+    /// &lt;param name=&quot;request&quot; /&gt;Request example&amp;lt;/param&amp;gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    [HttpPatch(&quot;/example/{id}&quot;)]
+    [Consumes(&quot;application/json&quot;)]
+    [Produces(&quot;application/json&quot;)]
+    public ActionResult&amp;lt; ExampleResponse &amp;gt; GetExample(int id, [FromBody] ExampleRequest request) 
+    =&amp;gt; Ok(new ExampleResponse());
+&lt;/pre&gt;
+
+&lt;p&gt;En este caso se han aplicado a nivel de método como caso de prueba, sería más habitual aplicarlos a toda la API.&lt;/p&gt;
+
+&lt;h3 id=&quot;añadir-headers-personalizados&quot;&gt;&lt;strong&gt;Añadir Headers personalizados&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;En ocasiones tenemos que construir una API que tiene que contar con un header propio, en este caso hemos utilizado un IOperationFilter y lo aplicamos a todos los endpoints.&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;  
+public class CustomHeaderFilter : IOperationFilter
+{
+    public void Apply(OpenApiOperation operation, OperationFilterContext context)
+    {
+        if (operation.Parameters == null)
+            operation.Parameters = new List&amp;lt; OpenApiParameter &amp;gt;();
+
+        operation.Parameters.Add(new OpenApiParameter
+        {
+            Name = &quot;x-header&quot;,
+            In = ParameterLocation.Header,
+            Description = &quot;Custom header for our application.&quot;,
+            Required = true,
+            Schema = new OpenApiSchema
+            {
+                Type = &quot;string&quot;,
+                Example = new OpenApiString(CustomHeader.Xyz.ToString()),
+                Enum = Enum
+                    .GetValues(typeof(CustomHeader))
+                    .Cast&amp;lt; CustomHeader &amp;gt;()
+                        .Select(x =&amp;gt; OpenApiAnyFactory.CreateFor(new OpenApiSchema() { Type = &quot;string&quot; }, x.ToString()))
+                        .ToList()
+            }
+        });
+    }
+}
+&lt;/pre&gt;
+
+&lt;p&gt;Para guardar los valores del CustomHeader se ha utilizado un enum:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;  
+public enum CustomHeader
+{
+    Xyz,
+    Abc
+}
+&lt;/pre&gt;
+
+&lt;p&gt;Y ya que tenemos un Enum, podemos ajustar NewtonsoftJson para serializar los enums como string. Para ello desde el Startup, en el método ConfigureServices podemos añadir:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;  
+services
+    .AddControllers()
+    .AddNewtonsoftJson(options =&amp;gt;
+    {
+        options.SerializerSettings.Converters.Add(new StringEnumConverter());
+    });
+&lt;/pre&gt;
+
+&lt;p&gt;Una vez creado el IOperationFilter, igual que el resto de filtros de swagger, es necesario registraro como hemos hecho con el filtro anterior:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;  
+services.AddSwaggerGen(c =&amp;gt;
+{
+    //[...]
+
+    c.OperationFilter&amp;lt; CustomHeaderFilter &amp;gt;();
+
+    //[...]
+});
+&lt;/pre&gt;
+
+&lt;p&gt;De esta forma, cuando swagger se encuentre el enum de CustomHeader nos facilitará un desplegable con los distintos valores:&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/05/25-Mejoras-Swagger-Parte3/despValores1.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/05/25-Mejoras-Swagger-Parte3/despValores1.png&quot; style=&quot;&quot; alt=&quot;imagen despValores1&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/05/25-Mejoras-Swagger-Parte3/despValores2.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/05/25-Mejoras-Swagger-Parte3/despValores2.png&quot; style=&quot;&quot; alt=&quot;imagen despValores2&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Muchas gracias. Nos leemos en más artículos.&lt;/p&gt;</content><author><name>Antonio Cárdenas García</name></author><category term="swagger" /><category term="aspnet" /><category term="netcore" /><summary type="html">3ª parte de la serie de artículos dedicados a Swagger. Añadiendo Headers personalizados sobre una api en NetCore.</summary></entry><entry><title type="html">Azure CLI, documenta todo lo que no pudiste</title><link href="./2021/05/10/Azure-CLI/" rel="alternate" type="text/html" title="Azure CLI, documenta todo lo que no pudiste" /><published>2021-05-10T03:00:00+00:00</published><updated>2021-05-10T03:00:00+00:00</updated><id>./2021/05/10/Azure-CLI</id><content type="html" xml:base="./2021/05/10/Azure-CLI/">&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/05/10-Azure-CLI/logo.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/05/10-Azure-CLI/logo.png&quot; style=&quot;&quot; alt=&quot;Azure CLI&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;El entorno gráfico del portal de Azure, cambia constantemente.&lt;/p&gt;
+
+&lt;p&gt;Documentar pequeños cambios que no has podido implementar en la IaC y se realiza de forma manual, suele ser algo que se olvida documentar en los proyectos y provoca más de un quebradero de cabeza.&lt;/p&gt;
+
+&lt;p&gt;Supongamos que en nuestra organización se hacen las cosas bien y usamos la wiki del proyecto, pero nos dedicamos a poner capturas de imagen de lo que tenemos que hacer y en dos meses debemos volver a esta documentación. Tras esos dos meses el entorno gráfico de Azure habrá cambiado, la opción que buscabas no las encuentras donde ponía la captura, suele ocurrir que la cambian de nombre o reorganizan los menús; el caso es que la documentación gráfica &lt;strong&gt;no&lt;/strong&gt; nos ayuda, es obsoleta y solo se han puesto capturas con muy poco texto, en muchos casos ninguno, ¿qué queríamos hacer?, ¿qué es lo que pretendía decirme la imagen?, …&lt;/p&gt;
+
+&lt;p&gt;Para que esto no suceda y &lt;strong&gt;para que siempre tengamos todo documentado de la mejor forma, es recomendable usar un comando de CLI&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;note note&quot;&gt;
+    &lt;span class=&quot;notetitle&quot;&gt;
+        
+        Nota:
+        
+    &lt;/span&gt; 
+Si ni siquiera estas usando capturas de pantalla para documentar. Es un consejo, comienza a documentar esos pequeños cambios, y ya que comienzas a hacerlo, comienza bien: usa comandos CLI.
+&lt;/div&gt;
+
+&lt;p&gt;Tienes 3 opciones para realizar acciones con comandos en Azure:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Azure Cloud Shell.&lt;/li&gt;
+  &lt;li&gt;Módulo de Powershell.&lt;/li&gt;
+  &lt;li&gt;Azure CLI.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;¿Cuál de ellos es recomendable usar? depende. Lo recomendable es usar siempre el recomendado en tu organización y como consultores, en unos sitios será el modulo de Powershell y en otras me permitirán usar el portal de Azure, por tanto Azure Cloud Shell. Y si tubiera que usar siempre uno, naturalmente (Azure CLI)[https://docs.microsoft.com/es-es/cli/azure/install-azure-cli].&lt;/p&gt;
+
+&lt;p&gt;Por ejemplo para ver los datos de una cuenta en Powershell y Azure CLI:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;Powerhsell&quot;&gt;  
+//Example with Powershell
+Get-AzSubscription
+
+//Example with Azure CLI
+az account show
+&lt;/pre&gt;
+
+&lt;p&gt;Sea cual sea tu situación, evita capturar imágenes en nuestra documentación. Un simple comando nos permitirá ser conciso.&lt;/p&gt;
+
+&lt;p&gt;Por ejemplo, imaginemos que debemos activar en una Azure Function la configuración &lt;em&gt;Allways on&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Una captura cuidad para documentación sería:&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/05/10-Azure-CLI/Img01.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/05/10-Azure-CLI/Img01.png&quot; style=&quot;&quot; alt=&quot;Captura con una herramienta más profesional&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Y si eres buen documentador habrás puesto el nombre de la función, como acceder al menú, capturar la imagen de lo que debes cambiar y por supuesto habrás usado una buena resolución de la captura para que se vea bien. Aunque esta imagen ya es capad de documentar por sí misma.&lt;/p&gt;
+
+&lt;p&gt;Pero lo habitual es esto:&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/05/10-Azure-CLI/Img02.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/05/10-Azure-CLI/Img02.png&quot; style=&quot;&quot; alt=&quot;Captura con una herramienta como MS Paint&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;La primera captura, supone tener una herramienta de pago que permite hacer buenas capturas de documentación y no es habitual disponer de ella.&lt;/p&gt;
+
+&lt;p&gt;En la primera relativamente he tardado poco en hacerlo en la segunda mucho más tiempo, he usado MS Paint. En ambas he tenido que hacer muchas cosas, frente a una línea de comando:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;Powerhsell&quot;&gt;  
+az functionapp config set --always-on true --name MyFunctionApp 
+   --resource-group MyResourceGroup
+&lt;/pre&gt;
+
+&lt;p&gt;Como puedes observar, no tiene comparación. Máxime cuando los comandos no cambian, se amplían con funcionalidades, pero no cambian.&lt;/p&gt;
+
+&lt;p&gt;Espero que esta pequeña reflexión te ayude a mejorar la documentación de tu proyecto de Azure y por qué no en aquellas acciones que puedas usar este paradigma.&lt;/p&gt;</content><author><name>Jose María Flores Zazo</name></author><category term="iac" /><category term="cli" /><category term="azure" /><summary type="html">La documentación es un punto muy importante de tu trabajo, máxime en un entorno como Azure. Usar Azure CLI es una forma optima para documentar, veamos por qué.</summary></entry><entry><title type="html">Sacando provecho de Swagger - parte 2</title><link href="./2021/04/26/MejorasSwaggerParte2/" rel="alternate" type="text/html" title="Sacando provecho de Swagger - parte 2" /><published>2021-04-26T03:00:00+00:00</published><updated>2021-04-26T03:00:00+00:00</updated><id>./2021/04/26/MejorasSwaggerParte2</id><content type="html" xml:base="./2021/04/26/MejorasSwaggerParte2/">&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/04/26-Mejoras-Swagger-Parte2/swagger-banner.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/04/26-Mejoras-Swagger-Parte2/swagger-banner.png&quot; style=&quot;&quot; alt=&quot;Mejoras Swagger parte 1&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Continuamos con el segundo post de la serie enfocada a sacar más provecho a Swagger y darle más valor a nuestra API.&lt;/p&gt;
+
+&lt;p&gt;En el primer post vimos como añadir comentarios XML y hoy veremos como añadir ejemplos a los esquemas.&lt;/p&gt;
+
+&lt;p&gt;Recordamos que tenemos una API en asp.net core 3.1 y con la versión de Swashbuckle.AspNetCore 5.0.0.&lt;/p&gt;
+
+&lt;h3 id=&quot;añadir-ejemplos-para-los-esquemas&quot;&gt;&lt;strong&gt;¿Añadir ejemplos para los esquemas?&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;Si añadimos ejemplos a los esquemas que tenemos mejoraremos mucho la usabilidad de los endpoints y ayudaremos a la interpretación de las respuestas.&lt;/p&gt;
+
+&lt;p&gt;Para ello hay varias formas, yo me he decantado por utilizar ISchemaFilter de forma que para cada esquema le añadimos un ejemplo predefinido:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;  
+public class ExampleSchemaFilter : ISchemaFilter
+{
+    public void Apply(OpenApiSchema schema, SchemaFilterContext context) =&amp;gt; schema.Example = GetExampleOrNullFor(context.Type);
+
+    private IOpenApiAny GetExampleOrNullFor(Type type)
+    {
+        switch (type.Name)
+        {
+            case nameof(ExampleRequest):
+                return new OpenApiObject
+                {
+                    [ExampleRequest.ElementJsonProperty] = new OpenApiString(&quot;Some element request.&quot;)
+                };
+            case nameof(ExampleResponse):
+                return new OpenApiObject
+                {
+                    [ExampleResponse.ResponseJsonProperty] = new OpenApiString(&quot;Any response.&quot;),
+                    [ExampleResponse.ErrorsJsonProperty] = new OpenApiNull()
+                };
+            default:
+                return null;
+        }
+    }
+}
+&lt;/pre&gt;
+
+&lt;p&gt;Para acabar de entender el ejemplo muestro las clases de Request y Response utilizadas:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;  
+public class ExampleRequest
+{
+    public const string ElementJsonProperty = &quot;element_json_custom_name&quot;;
+
+    [JsonProperty(PropertyName = ElementJsonProperty, Required = Required.Always)]
+    [StringLength(200, MinimumLength = 5)]
+    public string Element { get; set; }
+}
+public class ExampleResponse
+{
+    public const string ResponseJsonProperty = &quot;response_json_custom_name&quot;;
+    public const string ErrorsJsonProperty = &quot;errors_json_custom_name&quot;;
+
+    [JsonProperty(PropertyName = ResponseJsonProperty, Required = Required.DisallowNull)]
+    [StringLength(300)]
+    public string Response { get; set; }
+
+    [JsonProperty(PropertyName = ErrorsJsonProperty, Required = Required.AllowNull)]
+    public string Errors { get; set; }
+}
+&lt;/pre&gt;
+
+&lt;p&gt;En este caso, además de montar los ejemplos para peticiones y respuestas, he aprovechado para añadir ciertos atributos a los campos como el JsonProperty o el StringLenght, estos atributos al igual que otros atributos de Newtonsoft.Json o de System.ComponentModel.DataAnnotations son perfectamente reconocidos por swagger y añadirá las restricciones oportunas.&lt;/p&gt;
+
+&lt;p&gt;En este caso en hemos utilizado el JsonProperty por que nos puede interesar que el nombre del parámetro del Json sea uno concreto o para indicar si un campo es obligatorio, o si tiene que estar presente en el json pero puede ser nulo entre otros. De la misma forma también hemos especificado unos StringLength.&lt;/p&gt;
+
+&lt;p&gt;Centrándonos en el ISchemaFilter, el paquete de Swashbuckle ya se encarga de descubrir los endpoints y leer los parámetros de entrada y salida, en el ejemplo para cada esquema le asignamos un ejemplo.&lt;/p&gt;
+
+&lt;p&gt;Para que se aplique el scheme tenemos que registrarlo en la configuración del swagger:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;  
+services.AddSwaggerGen(c =&amp;gt;
+{
+    //[...] 
+
+    c.SchemaFilter &amp;lt; ExamplesSchemaFilter &amp;gt;();
+
+    //[...]
+});
+&lt;/pre&gt;
+
+&lt;p&gt;Ahora al abrir swagger nos aparecerán estos ejemplos añadidos:&lt;/p&gt;
+
+&lt;p&gt;Creamos el siguiente endpoint de ejemplo:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;  
+/// &lt;summary&gt;
+/// Get example info.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;id&quot; /&gt;Example id.&amp;lt;/param&amp;gt;
+/// &lt;param name=&quot;request&quot; /&gt;Request example&amp;lt;/param&amp;gt;
+/// &lt;returns&gt;&lt;/returns&gt;
+[HttpPatch(&quot;/example/{id}&quot;)]
+[ProducesResponseType(typeof(ExampleResponse), (int)HttpStatusCode.NoContent)]
+[ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.BadRequest)]
+[ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.Unauthorized)]
+[ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.Forbidden)]
+[ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.NotFound)]
+public ActionResult&amp;lt; ExampleResponse &amp;gt; GetExample(int id, [FromBody] ExampleRequest request) =&amp;gt; Ok(new ExampleResponse());
+&lt;/pre&gt;
+
+&lt;p&gt;Y desde swagger veremos los esquemas asociados a Example Request y Response&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/04/26-Mejoras-Swagger-Parte2/Esquemas.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/04/26-Mejoras-Swagger-Parte2/Esquemas.png&quot; style=&quot;&quot; alt=&quot;imagen Esquemas&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;</content><author><name>Antonio Cárdenas García</name></author><category term="swagger" /><category term="aspnet" /><category term="netcore" /><summary type="html">2ª de parte de artículos sobre Swagger y añadiendo ejemplos a nuestros esquemas</summary></entry><entry><title type="html">Introducción a Azure Bicep</title><link href="./2021/04/12/IntroduccionAzureBicep/" rel="alternate" type="text/html" title="Introducción a Azure Bicep" /><published>2021-04-12T03:00:00+00:00</published><updated>2021-04-12T03:00:00+00:00</updated><id>./2021/04/12/IntroduccionAzureBicep</id><content type="html" xml:base="./2021/04/12/IntroduccionAzureBicep/">&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/logo.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/logo.png&quot; style=&quot;&quot; alt=&quot;Azure Bicep&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;En el momento de la publicación de este artículo el desarrollo del producto esta en una fase inicial, pero con soporte por parte de Azure.&lt;/p&gt;
+
+&lt;p&gt;Desde la versión 0.3.1, los puntos destacables son:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Integración con Az CLI y Az PS.&lt;/li&gt;
+  &lt;li&gt;Deja de ser una herramienta experimental.&lt;/li&gt;
+  &lt;li&gt;Compatible con los planes de soporte de Microsoft&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;El propósito de Azure Bicep el siguiente:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Usar un lenguaje más amigable para un desarrollador que los JSON de ARM.&lt;/li&gt;
+  &lt;li&gt;Producir una sola plantilla de ARM para evitar el uso de una cuenta de almacenamiento o cualquier otro sistema para almacenar plantillas vinculadas.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A diferencia de &lt;a href=&quot;https://www.terraform.io/&quot;&gt;Terraform&lt;/a&gt; o &lt;a href=&quot;https://www.pulumi.com/&quot;&gt;Pulumi&lt;/a&gt;, Bicep es específico de Azure. Podríamos pensar que Microsoft están creando una nueva generación de ARM.&lt;/p&gt;
+
+&lt;p&gt;Si ya tienes experiencia con Terraform o con Pulumi, podrás observar que el propósito de Bicep es similar a las ventajas que tenemos con Terraform o Pulumi:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Menor número de líneas de código necesarias para crear un recurso en Azure que usando ARM.&lt;/li&gt;
+  &lt;li&gt;Usan lenguajes o bien propios como Terraform (HCL) o bien el casi más te guste con Pulumi (puedes usar C#, JS, TS, Go …).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Parece que el propósito de Bicep es darnos a los desarrolladores una alternativa similar a Terraform o Pulumi nativa de Microsoft.&lt;/p&gt;
+
+&lt;p&gt;El proyecto Biceps está en: &lt;a href=&quot;https://github.com/Azure/bicesp&quot; target=&quot;_blank&quot;&gt;https://github.com/Azure/bicesp&lt;/a&gt;, suscríbete para estar al día.&lt;/p&gt;
+
+&lt;p&gt;Supongo que alguna vez has visto un ARM para generar un recurso de Azure y si no, aquí tienes un extracto:&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/img01.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/img01.png&quot; style=&quot;&quot; alt=&quot;Ejemplo de ARM&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;¿Qué necesitamos para poder hacer un ejemplo práctico?:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Instalar la herramienta CLI de Bicep (seguir las instrucciones: &lt;a href=&quot;https://github.com/Azure/bicep/blob/main/docs/installing.md&quot;&gt;https://github.com/Azure/bicep/blob/main/docs/installing.md&lt;/a&gt;).&lt;/li&gt;
+  &lt;li&gt;Instalar la extensión de Visual Studio Code para Bicep. Es un paso opcional, pero mejora mucho nuestro trabajo con Bicep.&lt;/li&gt;
+  &lt;li&gt;Abrir el fichero bicep disponible en el repot de GitHub.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/img02.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/img02.png&quot; style=&quot;&quot; alt=&quot;Ejemplo de Bicep&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;En el ejemplo anterior, donde creamos una Web App, para ARM usamos 68 líneas mientras que para Bicep solamente estamos en 31 líneas Es &lt;strong&gt;más conciso&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Podrás observar que la Web App no necesita que se declare explícitamente la dependencia con el Service Plan, basta con usar plan.id para inferir la dependencia. &lt;strong&gt;Es más legible&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Por desgracia, aun no existe una integración oficial de Bicep con Azure DevOps (solo algunas cosas experimentales). Pero todo hace pensar que seguirá la logica que se está aplicando con Terraform o Pulumi, ya que los comandos son muy parecidos a lo que ejecutan ambos sistemas:&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/img03.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/img03.png&quot; style=&quot;&quot; alt=&quot;Ejemplo de Terraform&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Por tanto vamos a usar de momento Bicep para crear un fichero &lt;em&gt;.json&lt;/em&gt; de ARM a partir de un fichero &lt;em&gt;.bicep&lt;/em&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/img04.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/img04.png&quot; style=&quot;&quot; alt=&quot;De Bicep a ARM&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Tras la ejecución de la build ya tendremos una plantilla de ARM:&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/img05.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/img05.png&quot; style=&quot;&quot; alt=&quot;Salida de la build de Bicep en ARM&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Con esta plantilla podemos probar nuestro ejemplo usando &lt;strong&gt;Azure CLI&lt;/strong&gt; desde el terminal de VS Code:&lt;/p&gt;
+
+&lt;div class=&quot;note note&quot;&gt;
+    &lt;span class=&quot;notetitle&quot;&gt;
+        
+        Nota:
+        
+    &lt;/span&gt; 
+Usar --confirm-with-what-if exige tener la última versión de Azure CLI, puedes optar a probar el ARM desde DevOps, por ejemplo.
+&lt;/div&gt;
+
+&lt;pre data-enlighter-language=&quot;Powerhsell&quot;&gt;  
+az deployment group create --resource-group 'tokiotajmfztest'
+   --template-file main.json --confirm-with-what-if
+&lt;/pre&gt;
+
+&lt;p&gt;Generando como resultado:&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/img06.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/04/12-Introduccion-Azure-Bicep/img06.png&quot; style=&quot;&quot; alt=&quot;Salida de la build de Bicep en ARM&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Solo te faltaría escribir &lt;em&gt;y&lt;/em&gt; para desplegar la infraestructura.&lt;/p&gt;
+
+&lt;p&gt;Como podrá haber visto es más sencillo, fácil de leer y es nativo para Azure. Podría decirse que Bicep es el sucesor nativo de ARM. No pierdas de vista esta herramienta.&lt;/p&gt;</content><author><name>Jose María Flores Zazo</name></author><category term="iac" /><category term="arm" /><category term="bicep" /><category term="azure" /><summary type="html">Azure ARM tiene sucesor y se llama Bicep. Descubre por qué.</summary></entry><entry><title type="html">Sacando provecho de Swagger - parte 1</title><link href="./2021/03/29/MejorasSwaggerParte1/" rel="alternate" type="text/html" title="Sacando provecho de Swagger - parte 1" /><published>2021-03-29T03:00:00+00:00</published><updated>2021-03-29T03:00:00+00:00</updated><id>./2021/03/29/MejorasSwaggerParte1</id><content type="html" xml:base="./2021/03/29/MejorasSwaggerParte1/">&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/29-Mejoras-Swagger-Parte1/swagger-banner.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/29-Mejoras-Swagger-Parte1/swagger-banner.png&quot; style=&quot;&quot; alt=&quot;Mejoras Swagger parte 1&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Vamos a empezar una serie de posts dedicados a sacar más provecho a Swagger y darle más valor a nuestra API.&lt;/p&gt;
+
+&lt;p&gt;Una vez hemos creado nuestra API y ya tenemos swagger instalado y funcionando, es buen momento para añadir más información y hacerlo más útil y usable. En concreto, el ejemplo se ha realizado con Visual Studio 2019, con una API en asp.net core 3.1 y con la versión de Swashbuckle.AspNetCore 5.0.0.&lt;/p&gt;
+
+&lt;h3 id=&quot;comentarios-xml&quot;&gt;&lt;strong&gt;Comentarios XML&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;El primer paso sería habilitar los comentarios XML. Esto nos servirá para añadir a cada endpoint información adicional:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;  
+    /// &lt;summary&gt;
+    /// Get example info.
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;id&quot; /&gt;Example id.&amp;lt;/param&amp;gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    [HttpGet(&quot;/example/{id}&quot;)]
+    public IActionResult GetExample(int id) =&amp;gt; Ok(id);
+&lt;/pre&gt;
+
+&lt;p&gt;Para que se lean y muestren los summaries en swagger primero tenemos que agregar unas líneas en el csproj del projecto de la API:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;xml&quot;&gt;  
+  &lt;PropertyGroup&gt;
+    &lt;GenerateDocumentationFile&gt;true&lt;/GenerateDocumentationFile&gt;
+  &lt;/PropertyGroup&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;No obstante, esto nos provocará un incómodo warning en cada método que no tenga summary:&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/29-Mejoras-Swagger-Parte1/warning.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/29-Mejoras-Swagger-Parte1/warning.png&quot; style=&quot;&quot; alt=&quot;Imagen warning&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Para que no aparezcan estos warngins los podemos deshabilitar añadiendo una línea más al anterior código del PropertyGroup:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;xml&quot;&gt;  
+  &lt;PropertyGroup&gt;
+    &lt;GenerateDocumentationFile&gt;true&lt;/GenerateDocumentationFile&gt;
+    &lt;NoWarn&gt;$(NoWarn);1591&lt;/NoWarn&gt;
+  &lt;/PropertyGroup&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;Ahora que hemos configurado la generación de los xml, tenemos que añadirlos en la configuración del swagger.&lt;/p&gt;
+
+&lt;p&gt;Para ello, en el Startup al configurar AddSwaggerGen añadiremos las siguientes líneas:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;  
+services.AddSwaggerGen(c =&amp;gt;
+{
+    //[...]
+    
+    var xmlFile = $&quot;{Assembly.GetExecutingAssembly().GetName().Name}.xml&quot;;
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
+    
+    //[...]
+});
+&lt;/pre&gt;
+
+&lt;p&gt;De esta forma, nos aparecerá está información cuando vayamos a llamar al endpoint en cuestión:&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/29-Mejoras-Swagger-Parte1/InfoEndpoint.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/29-Mejoras-Swagger-Parte1/InfoEndpoint.png&quot; style=&quot;&quot; alt=&quot;Imagen InfoEndpoint&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;En este punto, es interesante aprovechar para especificar las respuestas de dicho endpoint. Para ello podemos utilizar el atributo ProducesResponseTypeAttribute especificando los HttpStatusCodes que devolvemos. Adicionalmente, también se puede especificar un mensaje concreto para cada código de respuesta añadiendo tags ‘response’ en el summary:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;csharp&quot;&gt;  
+    /// &lt;summary&gt;
+    /// Get example info.
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;id&quot; /&gt;Example id.&amp;lt;/param&amp;gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    /// &lt;response code=&quot;200&quot;&gt;Ok response.&lt;/response&gt;
+    /// &lt;response code=&quot;403&quot;&gt;Custom response for 403.&lt;/response&gt;
+    [HttpGet(&quot;/example/{id}&quot;)]
+    [ProducesResponseType(typeof(int), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.BadRequest)]
+    [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.Unauthorized)]
+    [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.Forbidden)]
+    [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.NotFound)]
+    public IActionResult GetExample(int id) =&amp;gt; Ok(id);
+&lt;/pre&gt;
+
+&lt;p&gt;Con esto, ahora swagger nos mostrará, además de la response (200 - Success) que hemos visto antes, un ErrorResponse para los códigos 400, 401, 403 y 403. Y en concreto, un mensaje personalizado para el código 200 y para el 403. .&lt;/p&gt;
+
+&lt;p&gt;A las respuestas de error, le hemos añadido un tipo de respuesta propio (ErrorResponse) no es obligatorio, pero es recomendable.&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/29-Mejoras-Swagger-Parte1/responses.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/29-Mejoras-Swagger-Parte1/responses.png&quot; style=&quot;&quot; alt=&quot;Imagen responses&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;</content><author><name>Antonio Cárdenas García</name></author><category term="swagger" /><category term="aspnet" /><category term="netcore" /><summary type="html">Sacando el máximo partido a nuestras APIs con Swagger - parte 1</summary></entry><entry><title type="html">Arrancando SQL Server en docker linux</title><link href="./2021/03/15/arrancando-sql-server-docker/" rel="alternate" type="text/html" title="Arrancando SQL Server en docker linux" /><published>2021-03-15T03:00:00+00:00</published><updated>2021-03-15T03:00:00+00:00</updated><id>./2021/03/15/arrancando-sql-server-docker</id><content type="html" xml:base="./2021/03/15/arrancando-sql-server-docker/">&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/15-arrancando-sql-server-docker/sqlserver_docker_min.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/15-arrancando-sql-server-docker/sqlserver_docker_min.png&quot; style=&quot;&quot; alt=&quot;SQL Server + Docker&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+&lt;p&gt;Si quieres arrancar rápidamente un SQL Server lo mejor es usar docker. Y con más razón si ya tienes WSL2 instalado 😀, y si todavía no lo tienes échale un vistazo a la &lt;a href=&quot;https://docs.microsoft.com/es-es/windows/wsl/install-win10&quot;&gt;guía de instalación&lt;/a&gt;.
+Esto puede resultar muy útil para no tener que instalar un entorno completo localmente.
+En la &lt;a href=&quot;https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&amp;amp;pivots=cs1-bash&quot;&gt;documentación oficial&lt;/a&gt; tienes toda la info. Yo lo he resumido con algunos cambios aquí:&lt;/p&gt;
+
+&lt;pre data-enlighter-language=&quot;bash&quot;&gt;
+docker run 
+  --name sql1 
+  -h sql1 
+  -e 'ACCEPT_EULA=Y' 
+  -e 'SA_PASSWORD=MiPa$$w0rd' 
+  -e 'MSSQL_PID=Enterprise' 
+  -p 11433:1433 
+  -d 
+  mcr.microsoft.com/mssql/server:2019-latest
+&lt;/pre&gt;
+
+&lt;p&gt;Yo ya tenía el puerto 1433 ocupado en mi máquina por lo que he mapeado la imagen al puerto 11433.&lt;/p&gt;
+
+&lt;p&gt;Para conectarte usando el Management Studio:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Server: 127.0.0.1,11433  (el puerto se indica separando con una coma)&lt;/li&gt;
+  &lt;li&gt;User: SA&lt;/li&gt;
+  &lt;li&gt;Password: la que hayáis indicado al arrancar el contenedor.&lt;/li&gt;
+  &lt;li&gt;Vamos a Options y en la &lt;em&gt;Additional Connection Parameters&lt;/em&gt; debemos añadir &lt;code class=&quot;highlighter-rouge&quot;&gt;TrustServerCertificate=True&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/15-arrancando-sql-server-docker/mmssqlserver_connections.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/15-arrancando-sql-server-docker/mmssqlserver_connections.png&quot; style=&quot;&quot; alt=&quot;Instrucciones para conectar Management Studio&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Todo funcionando.&lt;/p&gt;
+
+&lt;p&gt;Ahora cuando no lo necesites puedes detener el contenedor con &lt;code class=&quot;highlighter-rouge&quot;&gt;docker stop sql1&lt;/code&gt; de esta manera no te consume recursos de la máquina. 
+&lt;br /&gt;Y lo arrancas con &lt;code class=&quot;highlighter-rouge&quot;&gt;docker start sql1&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Fácil y sencillo.&lt;/p&gt;
+
+&lt;p&gt;Happy codding!&lt;/p&gt;</content><author><name>David Gonzalo</name></author><category term="docker" /><category term="sqlserver" /><category term="linux" /><summary type="html">Arrancando SQLServer en docker linux para nuestro entorno desarrollo.</summary></entry><entry><title type="html">Qué es Swagger y cómo añadirlo a tu Api de NetCore</title><link href="./2021/03/01/Add-Swagger-To-Net-Core-Api/" rel="alternate" type="text/html" title="Qué es Swagger y cómo añadirlo a tu Api de NetCore" /><published>2021-03-01T03:01:00+00:00</published><updated>2021-03-01T03:01:00+00:00</updated><id>./2021/03/01/Add%20Swagger%20To%20Net%20Core%20Api</id><content type="html" xml:base="./2021/03/01/Add-Swagger-To-Net-Core-Api/">&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/swaggerandcore.jpg&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/swaggerandcore.jpg&quot; style=&quot;&quot; alt=&quot;Add Swagger to Net Core Api&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;qué-es-swagger&quot;&gt;¿Qué es swagger?&lt;/h3&gt;
+
+&lt;p&gt;Swagger es una serie de reglas, especificaciones y herramientas que nos ayudan a documentar nuestras APIs. En otras palabras, al instalarlo, y ejecutar la API se nos generará una interfaz de usuario que nos permite navegar sobre los diferentes endpoints que tenga nuestra API de manera fácil e intuitiva. Es una herramienta muy útil a la hora de testear nuestras aplicaciones.&lt;/p&gt;
+
+&lt;h3 id=&quot;cómo-lo-usamos&quot;&gt;¿Cómo lo usamos?&lt;/h3&gt;
+&lt;p&gt;Para utilizar swagger lo primero que debemos hacer es instalarlo, obviamente.&lt;/p&gt;
+
+&lt;p&gt;Vamos al gestor de Nuget de nuestra API (Manage Nuget Packages) y buscamos el nuget Swashbuckle.AspNetCore:&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/nuget.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/nuget.png&quot; style=&quot;&quot; alt=&quot;Imagen nuget&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Lo siguiente que debemos hacer es registrar el servicio de swagger en nuestra ServiceCollection (clase Startup.cs, método ConfigureServices) añadiendo éstas líneas.&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/registerService.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/registerService.png&quot; style=&quot;&quot; alt=&quot;Imagen register service&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;También tendremos que añadir una breve configuración (clase Startup, método Configure) para indicar la ruta donde se ejecutará el swagger, así como también un nombre para la documentación que se nos va a generar.&lt;/p&gt;
+
+&lt;p&gt;En mi caso quiero que se ejecute en el directorio raíz de la aplicación y por lo tanto configuraré la propiedad RoutePrefix como cadena vacía.&lt;/p&gt;
+
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/configure.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/configure.png&quot; style=&quot;&quot; alt=&quot;Imagen configure&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Llegados a este punto ya podemos ejecutar nuestra API y comprobar lo de lo que es capaz nuestro asistente para documentación y testing.&lt;/p&gt;
+
+&lt;p&gt;En las siguientes imágenes podemos ver un ejemplo paso a paso:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Vista preliminar:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/ej1.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/ej1.png&quot; style=&quot;&quot; alt=&quot;Imagen ejemplo1&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Método Get Simple:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/ej2.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/ej2.png&quot; style=&quot;&quot; alt=&quot;Imagen ejemplo2&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Método Post con asistente de creación del objeto:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/ej3.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/01-Add-Swagger-To-Net-Core-Api/ej3.png&quot; style=&quot;&quot; alt=&quot;Imagen ejemplo3&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Fácil y sencillo. 
+&lt;br /&gt;Hasta la próxima.&lt;/p&gt;</content><author><name>Francisco Javier Lafuente</name></author><category term="swagger" /><category term="netcore" /><category term="api" /><summary type="html">Qué es Swagger y cómo añadir a tu Api de NetCore esta fantástica herramienta.</summary></entry><entry><title type="html">Hello world!</title><link href="./2021/03/01/Hello-World/" rel="alternate" type="text/html" title="Hello world!" /><published>2021-03-01T03:00:00+00:00</published><updated>2021-03-01T03:00:00+00:00</updated><id>./2021/03/01/Hello-World</id><content type="html" xml:base="./2021/03/01/Hello-World/">&lt;div class=&quot;containerImgs&quot;&gt;
+  &lt;a href=&quot;./public/uploads/2021/03/01-Hello-World/hello-toris.jpg&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;./public/uploads/2021/03/01-Hello-World/hello-toris.jpg&quot; style=&quot;&quot; alt=&quot;Hello World!&quot; /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Hello World!&lt;/p&gt;
+
+&lt;p&gt;Con estas palabras, y su significado desde los inicios del mundo de la programación, comenzamos este nuevo rincón en donde compartir nuestras inquietudes tecnológicas, englobado al mundo del desarrollo de software, infraestructura, cloud, web, móvil, innovación…&lt;/p&gt;
+
+&lt;p&gt;Un rincón creado con la pasión de todos nuestros tokiotas por compartir el conocimiento.&lt;/p&gt;
+
+&lt;p&gt;Gracias.
+&lt;br /&gt;ありがとう。&lt;/p&gt;</content><author><name>Tokiota</name></author><category term="azure" /><category term="microsoft" /><summary type="html">Arrancamos nuevo blog. Un rincón creado con la pasión de todos nuestros Tokiotas por compartir el conocimiento.</summary></entry></feed>

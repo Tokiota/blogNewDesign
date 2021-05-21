@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+   <!-- Analitycs -->
+   <!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXX-X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-XXXXXXX-X');
+</script>
+   
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Arrancando SQL Server en docker linux &middot; Blog de Tokiotas
+    
+  </title>
+
+
+  <!-- Social Metas -->
+  <meta property="og:title" content="Arrancando SQL Server en docker linux">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="./2021/03/15/arrancando-sql-server-docker/">
+  <meta property="og:image" content="./public/uploads/2021/03/15-arrancando-sql-server-docker/sqlserver_docker_min.png">
+  <meta property="og:description" content="Arrancando SQLServer en docker linux para nuestro entorno desarrollo.">
+  <meta property="og:site_name" content="Tokiota">
+  <meta property="og:locale" content="es_es">
+  
+    <meta property="article:modified_time" content="2021-03-15T03:00:00+00:00">
+    <meta property="article:published_time" content="2021-03-15T03:00:00+00:00">
+    <meta property="article:author" content="">
+    
+      <meta property="og:see_also" content="./2021/06/21/Hybrid_file_server/">
+    
+      <meta property="og:see_also" content="./2021/05/30/Autofixture/">
+    
+      <meta property="og:see_also" content="./2021/05/25/MejorasSwaggerParte3/">
+    
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+  <meta name="twitter:title" content="Arrancando SQL Server en docker linux">
+  <meta name="twitter:description" content="Arrancando SQLServer en docker linux para nuestro entorno desarrollo.">
+  <meta name="twitter:image" content="./public/uploads/2021/03/15-arrancando-sql-server-docker/sqlserver_docker_min.png">
+  <meta name="twitter:url" content="./2021/03/15/arrancando-sql-server-docker/">
+  <meta name="description" content="Arrancando SQLServer en docker linux para nuestro entorno desarrollo.">
+  
+
+  
+
+  <meta rel="author" content="">
+  
+
+  <link rel="alternate" type="application/atom+xml" title="Blog de Tokiotas" href="/atom.xml" />
+  <link rel="canonical" href="./2021/03/15/arrancando-sql-server-docker/">
+  
+  
+  
+    <link rel="next" href="./2021/03/29/MejorasSwaggerParte1/" title="Sacando provecho de Swagger - parte 1">
+  
+  
+    <link rel="prev" href="./2021/03/01/Add-Swagger-To-Net-Core-Api/" title="Qué es Swagger y cómo añadirlo a tu Api de NetCore">
+  
+  
+  <!-- CSS -->  
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/pagination.css">
+  <link rel="stylesheet" href="./assets/css/tags-cloud.css">
+  <link rel="stylesheet" href="./assets/css/gistgithub.css">
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie"> 
+    
+  <!-- Icons -->
+  <link rel="shortcut icon"                                href="./public/img/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon-precomposed"                 href="./public/img/apple-touch-icon.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="57x57"   href="./public/img/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72"   href="./public/img/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="76x76"   href="./public/img/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="./public/img/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="./public/img/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="./public/img/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="./public/img/apple-touch-icon-152x152.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="./public/img/apple-touch-icon-180x180.png" />
+  
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
+
+  
+   <!-- Include dependeces EnlighterJS  -->
+   <link rel="stylesheet" type="text/css" href="./assets/scripts/enlighterjs/enlighterjs.godzilla.min.css" />       
+   <script type="text/javascript" src="./assets/scripts/enlighterjs/enlighterjs.min.js"></script>
+  
+
+  <!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Arrancando SQL Server en docker linux | Blog de Tokiotas</title>
+<meta name="generator" content="Jekyll v3.7.4" />
+<meta property="og:title" content="Arrancando SQL Server en docker linux" />
+<meta name="author" content="David Gonzalo" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Arrancando SQLServer en docker linux para nuestro entorno desarrollo." />
+<meta property="og:description" content="Arrancando SQLServer en docker linux para nuestro entorno desarrollo." />
+<link rel="canonical" href="./2021/03/15/arrancando-sql-server-docker/" />
+<meta property="og:url" content="./2021/03/15/arrancando-sql-server-docker/" />
+<meta property="og:site_name" content="Blog de Tokiotas" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-03-15T03:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@David Gonzalo" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"./2021/03/15/arrancando-sql-server-docker/"},"url":"./2021/03/15/arrancando-sql-server-docker/","author":{"@type":"Person","name":"David Gonzalo"},"description":"Arrancando SQLServer en docker linux para nuestro entorno desarrollo.","headline":"Arrancando SQL Server en docker linux","dateModified":"2021-03-15T03:00:00+00:00","datePublished":"2021-03-15T03:00:00+00:00","@type":"BlogPosting","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+ 
+
+      <script type="text/javascript" src="./assets/scripts/jekyll-search.min.js" ></script>
+      <script type="text/javascript" src="./assets/scripts/tags-cloud.js" ></script>
+      
+  
+    </head>
+</head>
+
+
+  <body>
+    <style>
+    #cookie-notice {padding: 2px 10px; z-index: 100; 
+        display: none; 
+        text-align: center; position: fixed; bottom: 0; width: 100%; background: #222;
+        color: rgba(255,255,255,0.8);
+        }
+    #cookie-notice a {cursor: pointer; margin-left: 5px;}
+    @media (max-width: 767px) {
+        #cookie-notice span {display: block; padding-top: 3px; margin-bottom: 5px;}
+        #cookie-notice a {position: relative; bottom: 4px;}
+    }
+    #btnOkCookie { background-color: #a40a0a; padding: 5px 10px 5px 10px; }
+    #cookie-notice-accept{ color: #ffffff; cursor: pointer; }
+    .column {  float: left; }
+    .left {  width: 50%; }
+    .right {  width: 50%; cursor: pointer; }
+    .row:after { 
+        content: "";
+        display: table;
+        clear: both;
+    }
+    #cookie-notice-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+    }
+</style>
+<!-- <div id="cookie-notice">
+    <span>Usamos 🍪cookies🍪 para nuestras métricas, ver si nuestro contenido es interesante e ir mejorando esta web.</span>
+    <div class="row">
+        <div class="column left">
+            <a href="#" class="btn btn-primary btn-sm">Más info </a>         
+        </div>
+        <div class="column right btnOkCookie">
+            <span id="cookie-notice-accept" class="btn btn-primary btn-sm">OK</span>
+        </div>
+    </div>
+</div> -->
+<div id="cookie-notice">
+    <div id="cookie-notice-content">
+        <div style="margin-right: 10px;">
+            Usamos 🍪cookies🍪 para nuestras métricas, ver si nuestro contenido es interesante e ir mejorando esta web.
+        </div>
+        <div id="btnOkCookie" >
+            <span id="cookie-notice-accept" class="btn btn-primary btn-sm">OK</span>
+        </div>
+    </div>
+</div>
+<script>
+    function createCookie(name,value,days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + value + expires + "; path=/";
+    }
+    function readCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+    function eraseCookie(name) {
+        createCookie(name,"",-1);
+    }
+    function clickAcceptCookie() {
+        createCookie('cookie-notice-dismissed','true',1000);
+        document.getElementById('cookie-notice').style="display:none";
+    }
+
+    if(readCookie('cookie-notice-dismissed')=='true') {
+        //nada por ahora
+    } else {
+        document.getElementById('cookie-notice').style="display:block";
+    }
+    
+    document.getElementById('cookie-notice-accept').onclick = clickAcceptCookie;
+    document.getElementById('btnOkCookie').onclick = clickAcceptCookie;
+
+    
+
+</script>
+    <div class="grid-container">
+      <header class="header">
+        <a href="/"><img alt="Tokiota Blog" src="/public/img/header_image_text.png"/></a>
+<!-- <h3>Tokiota Blog</h3> -->
+      </header>
+
+      <div class="containerMain">
+        <main class="main">
+          <div class="post">
+  <h1 class="post-title">Arrancando SQL Server en docker linux</h1>
+  <span class="post-author">por <a href="#infoAuthor">David Gonzalo</a></span>
+  <span class="post-date">
+
+
+
+
+
+15 de Marzo del 2021 &#903; 
+
+
+
+<span class="reading-time" title="Tiempo estimado de lectura para 220 palabras">
+  
+    1 min. 
+  
+</span>
+
+</span>
+  
+  <hr>
+  
+<div class="containerImgs">
+  <a href="./public/uploads/2021/03/15-arrancando-sql-server-docker/sqlserver_docker_min.png" target="_blank">
+    <img src="./public/uploads/2021/03/15-arrancando-sql-server-docker/sqlserver_docker_min.png" style="" alt="SQL Server + Docker" />
+  </a>
+</div>
+<p>Si quieres arrancar rápidamente un SQL Server lo mejor es usar docker. Y con más razón si ya tienes WSL2 instalado 😀, y si todavía no lo tienes échale un vistazo a la <a href="https://docs.microsoft.com/es-es/windows/wsl/install-win10">guía de instalación</a>.
+Esto puede resultar muy útil para no tener que instalar un entorno completo localmente.
+En la <a href="https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&amp;pivots=cs1-bash">documentación oficial</a> tienes toda la info. Yo lo he resumido con algunos cambios aquí:</p>
+
+<pre data-enlighter-language="bash">
+docker run 
+  --name sql1 
+  -h sql1 
+  -e 'ACCEPT_EULA=Y' 
+  -e 'SA_PASSWORD=MiPa$$w0rd' 
+  -e 'MSSQL_PID=Enterprise' 
+  -p 11433:1433 
+  -d 
+  mcr.microsoft.com/mssql/server:2019-latest
+</pre>
+
+<p>Yo ya tenía el puerto 1433 ocupado en mi máquina por lo que he mapeado la imagen al puerto 11433.</p>
+
+<p>Para conectarte usando el Management Studio:</p>
+<ul>
+  <li>Server: 127.0.0.1,11433  (el puerto se indica separando con una coma)</li>
+  <li>User: SA</li>
+  <li>Password: la que hayáis indicado al arrancar el contenedor.</li>
+  <li>Vamos a Options y en la <em>Additional Connection Parameters</em> debemos añadir <code class="highlighter-rouge">TrustServerCertificate=True</code>.</li>
+</ul>
+
+<div class="containerImgs">
+  <a href="./public/uploads/2021/03/15-arrancando-sql-server-docker/mmssqlserver_connections.png" target="_blank">
+    <img src="./public/uploads/2021/03/15-arrancando-sql-server-docker/mmssqlserver_connections.png" style="" alt="Instrucciones para conectar Management Studio" />
+  </a>
+</div>
+
+<p>Todo funcionando.</p>
+
+<p>Ahora cuando no lo necesites puedes detener el contenedor con <code class="highlighter-rouge">docker stop sql1</code> de esta manera no te consume recursos de la máquina. 
+<br />Y lo arrancas con <code class="highlighter-rouge">docker start sql1</code>.</p>
+
+<p>Fácil y sencillo.</p>
+
+<p>Happy codding!</p>
+
+</div>
+
+<hr style="border-color: #eee;"/>
+
+<h4>Escrito por:</h4>
+<div id="infoAuthor" class="container-info-author">
+  <span class="info-author">
+    <img class="photo" width="100" height="100" alt="David Gonzalo" src="/public/img/authors/david_gonzalo_pena.jpg">
+    <b>David Gonzalo</b>
+    <br/>
+    Team Lead & Cloud Developer Consultant
+  </span>
+</div>
+
+
+<hr style="border-color: #eee;"/>
+<h4>Comparte esto:</h4>
+
+
+
+
+<div id="share-bar">
+  <div class="share-buttons">
+    <a href="https://twitter.com/intent/tweet?text=Arrancando SQL Server en docker linux by @Tokiota_IT&url=./2021/03/15/arrancando-sql-server-docker/" rel="nofollow" target="_blank" title="Tweet"><i class="fa fa-twitter share-button"> <span>twitter</span></i></a>
+    <a href="https://facebook.com/sharer.php?u=./2021/03/15/arrancando-sql-server-docker/" rel="nofollow" title="Compartir en Facebook" target="_blank"><i class="fa fa-facebook-official share-button"> <span>facebook</span></i></a>
+    <a href="https://api.whatsapp.com/send?text=Arrancando SQL Server en docker linux by @Tokiota_IT ./2021/03/15/arrancando-sql-server-docker/" rel="nofollow noopener noreferrer" target="_blank" title="Compartir en WhatsApp"><i class="fa fa-whatsapp share-button"> <span>whatsapp</span></i></a>
+    <a href="http://www.linkedin.com/shareArticle?mini=true&url=./2021/03/15/arrancando-sql-server-docker/&title=Arrancando SQL Server en docker linux by @Tokiota_IT" rel="nofollow" target="_blank" title="Compartir en LinkedIn"><i class="fa fa-linkedin share-button"> <span>linkedin</span></i></a>
+    <a href="http://www.reddit.com/submit?url=./2021/03/15/arrancando-sql-server-docker/&title=Arrancando SQL Server en docker linux by @Tokiota_IT" rel="nofollow" target="_blank" title="Compartir en Reddit"><i class="fa fa-reddit-alien share-button"> <span>reddit</span></i></a>
+    <a href="mailto:?subject=Arrancando SQL Server en docker linux by @Tokiota_IT&body=./2021/03/15/arrancando-sql-server-docker/" rel="nofollow" target="_blank" title="Enviar email"><i class="fa fa-envelope share-button"> <span>email</span></i></a>
+  </div>
+</div>
+
+
+
+
+ 
+<!-- EnlighterJS -->
+<!-- Init Code -->
+<script type="text/javascript">
+  // - highlight all pre + code tags (CSS3 selectors)
+  // - use javascript as default language
+  // - use theme "enlighter" as default theme
+  // - replace tabs with 2 spaces
+  EnlighterJS.init('pre','code', {
+          language : 'csharp',
+          theme: 'godzilla',
+          indent : 2,
+          textOverflow: 'scroll'
+          
+  });
+</script>
+
+        </main>
+      
+        <div class="sidebar sidebar-right">
+          <div class="sidebar-section">
+  <h3>Tokiota Team</h3>
+  Con este blog queremos transmitir la pasión que todo Tokiota tiene por la tecnología, innovación y compartir esas iniciativas con todo el mundo.
+  Gracias por leernos y síguenos en nuestras redes sociales.
+  <br/>ありがとう。
+  <br/>
+  <span class="info-author">
+    <a href="https://www.twitter.com/Tokiota_IT" target="_blank">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-twitter fa-stack-1x"></i>
+      </span>
+    </a>
+    <a href="https://es-es.facebook.com/tokiota.es" target="_blank">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-facebook fa-stack-1x"></i>
+      </span>
+    </a>
+    <a href="https://www.linkedin.com/company/tokiota/" target="_blank">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-linkedin fa-stack-1x"></i>
+      </span>
+    </a>
+    <a href="https://www.youtube.com/channel/UCfiDuxp9zGMJ7NIFyjRuHWQ" target="_blank">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-youtube fa-stack-1x"></i>
+      </span>
+    </a>
+    <a href="https://www.instagram.com/tokiota_it" target="_blank">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-instagram fa-stack-1x"></i>
+      </span>
+    </a>
+  </span>
+
+</div>
+
+<!-- <div class="sidebar-section">
+  <h3>Próximos eventos</h3>
+  <div><i>sin agenda</i></div>
+</div> -->
+
+<div class="sidebar-section">
+  <input type="text" id="search-input" class="search-input" placeholder="Buscar...">
+  <div id="search-container">
+    <ul id="results-container"></ul>
+  </div>
+  <!-- Script pointing to jekyll-search.js -->
+  <script type="text/javascript">
+    SimpleJekyllSearch({
+      searchInput: document.getElementById('search-input'),
+      resultsContainer: document.getElementById('results-container'),
+      json: '/search.json',
+      noResultsText: 'No hay resultados',
+      limit: 5,
+    })
+  </script>
+</div>
+
+<div class="sidebar-section">
+  
+  <div id="tagscloud">
+    
+    
+    
+    
+      <div class="archive-group">
+        
+        <p></p>
+        <a class="tagc1" href="/tags/#api">api (1)</a>      
+      </div>
+      
+      
+    
+      <div class="archive-group">
+        
+        <p></p>
+        <a class="tagc2" href="/tags/#arm">arm (2)</a>      
+      </div>
+      
+      
+    
+      <div class="archive-group">
+        
+        <p></p>
+        <a class="tagc3" href="/tags/#aspnet">aspnet (3)</a>      
+      </div>
+      
+      
+    
+      <div class="archive-group">
+        
+        <p></p>
+        <a class="tagc1" href="/tags/#autofixture">autofixture (1)</a>      
+      </div>
+      
+      
+    
+      <div class="archive-group">
+        
+        <p></p>
+        <a class="tagc2" href="/tags/#azure">azure (5)</a>      
+      </div>
+      
+      
+    
+      <div class="archive-group">
+        
+        <p></p>
+        <a class="tagc3" href="/tags/#bicep">bicep (1)</a>      
+      </div>
+      
+      
+    
+      <div class="archive-group">
+        
+        <p></p>
+        <a class="tagc1" href="/tags/#blog">blog (1)</a>      
+      </div>
+      
+      
+    
+      <div class="archive-group">
+        
+        <p></p>
+        <a class="tagc2" href="/tags/#cli">cli (1)</a>      
+      </div>
+      
+      
+    
+      <div class="archive-group">
+        
+        <p></p>
+        <a class="tagc3" href="/tags/#docker">docker (1)</a>      
+      </div>
+      
+      
+    
+      <div class="archive-group">
+        
+        <p></p>
+        <a class="tagc1" href="/tags/#fileserver">fileserver (1)</a>      
+      </div>
+      
+      
+    
+      <div class="archive-group">
+        
+        <p></p>
+        <a class="tagc2" href="/tags/#hybrid">hybrid (1)</a>      
+      </div>
+      
+      
+    
+      <div class="archive-group">
+        
+        <p></p>
+        <a class="tagc3" href="/tags/#iac">iac (2)</a>      
+      </div>
+      
+      
+    
+      <div class="archive-group">
+        
+        <p></p>
+        <a class="tagc1" href="/tags/#linux">linux (2)</a>      
+      </div>
+      
+      
+    
+      <div class="archive-group">
+        
+        <p></p>
+        <a class="tagc2" href="/tags/#microsoft">microsoft (1)</a>      
+      </div>
+      
+      
+    
+      <div class="archive-group">
+        
+        <p></p>
+        <a class="tagc3" href="/tags/#netcore">netcore (4)</a>      
+      </div>
+      
+      
+    
+      <div class="archive-group">
+        
+        <p></p>
+        <a class="tagc1" href="/tags/#sqlserver">sqlserver (1)</a>      
+      </div>
+      
+      
+    
+      <div class="archive-group">
+        
+        <p></p>
+        <a class="tagc2" href="/tags/#swagger">swagger (4)</a>      
+      </div>
+      
+      
+    
+      <div class="archive-group">
+        
+        <p></p>
+        <a class="tagc3" href="/tags/#xunit">xunit (1)</a>      
+      </div>
+      
+      
+    
+  </div>
+</div>
+
+<div class="sidebar-section">
+  <h3>Categorías</h3>
+  <div id="archives">
+    
+    
+      <div class="archive-group">
+        
+        <p></p>
+        <a href="/categories/#Desarrollo">Desarrollo (9)</a>      
+      </div>
+    
+      <div class="archive-group">
+        
+        <p></p>
+        <a href="/categories/#Infraestructura">Infraestructura (2)</a>      
+      </div>
+    
+      <div class="archive-group">
+        
+        <p></p>
+        <a href="/categories/#Tokiota">Tokiota (2)</a>      
+      </div>
+    
+  </div>
+</div>
+
+
+
+<div class="sidebar-section">
+  <div class="related">
+  <h3>Artículos recientes</h3>
+  <ul class="related-posts">
+    
+      <li>
+        <h4>
+          <a href="/2021/06/21/Hybrid_file_server/">
+            Hybrid File Server
+          </a>
+        </h4>
+      </li>
+    
+      <li>
+        <h4>
+          <a href="/2021/05/30/Autofixture/">
+            Agiliza la escritura de tests con AutoFixture
+          </a>
+        </h4>
+      </li>
+    
+      <li>
+        <h4>
+          <a href="/2021/05/25/MejorasSwaggerParte3/">
+            Sacando provecho de Swagger - parte 3
+          </a>
+        </h4>
+      </li>
+    
+      <li>
+        <h4>
+          <a href="/2021/05/10/Azure-CLI/">
+            Azure CLI, documenta todo lo que no pudiste
+          </a>
+        </h4>
+      </li>
+    
+      <li>
+        <h4>
+          <a href="/2021/04/26/MejorasSwaggerParte2/">
+            Sacando provecho de Swagger - parte 2
+          </a>
+        </h4>
+      </li>
+    
+  </ul>
+</div>
+</div>
+
+
+        </div>
+      </div>
+      
+      <footer class="footer">
+        <!-- Footer -->
+<div class="footer-container">
+  
+  <div class="footer-container-items">
+    <a href="https://www.twitter.com/Tokiota_IT" target="_blank">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </div>
+  
+  
+  <div class="footer-container-items">
+    <a href="https://es-es.facebook.com/tokiota.es" target="_blank">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </div>
+  
+  
+  <div class="footer-container-items">
+    <a href="https://www.linkedin.com/company/tokiota/ " target="_blank">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </div>
+  
+  
+  <div class="footer-container-items">
+    <a href="https://www.youtube.com/channel/UCfiDuxp9zGMJ7NIFyjRuHWQ" target="_blank">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-youtube fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </div>
+  
+  
+  <div class="footer-container-items">
+    <a href="https://www.instagram.com/tokiota_it" target="_blank">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </div>
+  
+  
+  <div class="footer-container-items">
+    <a href="https://github.com/tokiota" target="_blank">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </div>
+  
+</div>
+
+<p class="copyright text-muted">Copyright &copy;  2021</p>
+
+      </footer>
+
+    </div>
+    
+  </body>  
+  
+</html>

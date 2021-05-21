@@ -1,0 +1,123 @@
+[
+  
+    {
+      "title"    : "Hybrid File Server",
+      "category" : "",
+      "tags"     : "hybrid, fileserver, azure",
+      "url"      : "/2021/06/21/Hybrid_file_server/",
+      "date"     : "2021-06-21 03:00:00 +0000",
+      "author"   : "Daniel Camacho Rodríguez",      
+      "content"  : "La acumulación de archivos y documentos en nuestros servidores de ficheros puede ser preocupante, pues implica la necesidad de eliminar o archivar documentos para liberar espacio y/o ampliar cabina/discos. Esto se suele traducir en malestar por parte del usuario y/o en un desembolso económico. Conoce la solución que desde Tokiota te presentamos Hybrid File Server."
+    } ,
+  
+    {
+      "title"    : "Agiliza la escritura de tests con AutoFixture",
+      "category" : "",
+      "tags"     : "autofixture, xunit",
+      "url"      : "/2021/05/30/Autofixture/",
+      "date"     : "2021-05-30 03:00:00 +0000",
+      "author"   : "Hector Escalante",      
+      "content"  : "Al escribir tests generalmente creamos objetos que representan el estado inicial y en algunas ocasiones crear estos objetos y sus dependencias se puede convertir en una tarea compleja y terminamos escribiendo código que no es relevante para el test, para optimizar esta tarea podemos apoyarnos en la librería AutoFixture cuyo principal beneficio es la creación de valores aleatorios e instancias con un mínimo esfuerzo."
+    } ,
+  
+    {
+      "title"    : "Sacando provecho de Swagger - parte 3",
+      "category" : "",
+      "tags"     : "swagger, aspnet, netcore",
+      "url"      : "/2021/05/25/MejorasSwaggerParte3/",
+      "date"     : "2021-05-25 03:00:00 +0000",
+      "author"   : "Antonio Cárdenas García",      
+      "content"  : "3ª parte de la serie de artículos dedicados a Swagger. En esta ocasión abordando la definición de un content-type y Headers personalizados, sobre una api en NetCore."
+    } ,
+  
+    {
+      "title"    : "Azure CLI, documenta todo lo que no pudiste",
+      "category" : "",
+      "tags"     : "iac, cli, azure",
+      "url"      : "/2021/05/10/Azure-CLI/",
+      "date"     : "2021-05-10 03:00:00 +0000",
+      "author"   : "Jose María Flores Zazo",      
+      "content"  : "La documentación es un punto muy importante de tu trabajo, máxime en un entorno como Azure. Os dejo un pequeño consejo para tu dia a dia."
+    } ,
+  
+    {
+      "title"    : "Sacando provecho de Swagger - parte 2",
+      "category" : "",
+      "tags"     : "swagger, aspnet, netcore",
+      "url"      : "/2021/04/26/MejorasSwaggerParte2/",
+      "date"     : "2021-04-26 03:00:00 +0000",
+      "author"   : "Antonio Cárdenas García",      
+      "content"  : "Continuamos la serie de artículos dedicados a Swagger con esta segunda parte añadiendo ejemplos a los esquemas de datos."
+    } ,
+  
+    {
+      "title"    : "Introducción a Azure Bicep",
+      "category" : "",
+      "tags"     : "iac, arm, bicep, azure",
+      "url"      : "/2021/04/12/IntroduccionAzureBicep/",
+      "date"     : "2021-04-12 03:00:00 +0000",
+      "author"   : "Jose María Flores Zazo",      
+      "content"  : "Podria decirse que Bicep es el sucesor nativo de ARM. Logrará que nuestra IaC sea más sencilla, amigable y fácil de mantener."
+    } ,
+  
+    {
+      "title"    : "Sacando provecho de Swagger - parte 1",
+      "category" : "",
+      "tags"     : "swagger, aspnet, netcore",
+      "url"      : "/2021/03/29/MejorasSwaggerParte1/",
+      "date"     : "2021-03-29 03:00:00 +0000",
+      "author"   : "Antonio Cárdenas García",      
+      "content"  : "Comenzamos una serie de artículos dedicados a sacar el máximo partido de Swagger sobre nuestros proyectos y conseguir darle más valor a nuestras API"
+    } ,
+  
+    {
+      "title"    : "Arrancando SQL Server en docker linux",
+      "category" : "",
+      "tags"     : "docker, sqlserver, linux",
+      "url"      : "/2021/03/15/arrancando-sql-server-docker/",
+      "date"     : "2021-03-15 03:00:00 +0000",
+      "author"   : "David Gonzalo",      
+      "content"  : "Te contamos lo fácil que resulta arrancar un contenedor de SQLServer y tener nuestro propio servidor de base de datos en cuestión de segundos. Se acabaron las esperas de instalaciones en tu equipo de desarrollo. "
+    } ,
+  
+    {
+      "title"    : "Qué es Swagger y cómo añadirlo a tu Api de NetCore",
+      "category" : "",
+      "tags"     : "swagger, netcore, api",
+      "url"      : "/2021/03/01/Add-Swagger-To-Net-Core-Api/",
+      "date"     : "2021-03-01 03:01:00 +0000",
+      "author"   : "Francisco Javier Lafuente",      
+      "content"  : "Te contamos qué es Swagger y cómo podemos usar esta fantástica herramienta que nos ayuda a documentar y testear nuestras APIs. Cuatro sencillos pasos sobre en nuestro proyecto NetCore."
+    } ,
+  
+    {
+      "title"    : "Hello world!",
+      "category" : "",
+      "tags"     : "azure, microsoft",
+      "url"      : "/2021/03/01/Hello-World/",
+      "date"     : "2021-03-01 03:00:00 +0000",
+      "author"   : "Tokiota",      
+      "content"  : "Arrancamos nuevo blog. Un rincón creado con la pasión de todos nuestros Tokiotas por compartir conocimiento e inquietudes tecnológicas, englobado al mundo del desarrollo de software, infraestructura, cloud, web, móvil, innovación... "
+    } ,
+  
+    {
+      "title"    : "Creando plantillas ARM",
+      "category" : "",
+      "tags"     : "azure, arm, linux",
+      "url"      : "/2020/12/27/2021-mm-dd-creando-plantillas-arm/",
+      "date"     : "2020-12-27 23:00:00 +0000",
+      "author"   : "David Gonzalo",      
+      "content"  : "Lorem ipsum"
+    } ,
+  
+    {
+      "title"    : "Guía de estilos para los artículos",
+      "category" : "",
+      "tags"     : "blog",
+      "url"      : "/2020/10/19/00_Guia-estilo-articulos/",
+      "date"     : "2020-10-19 23:00:00 +0000",
+      "author"   : "Tokiota",      
+      "content"  : "Este es un resumen largo del artículo que se usará de entradilla en la pantalla Home. aquí tambien se admiten tags html para palabras en negrita, en cursiva, enlaces a alguna página web y mismo emojis ⛩😃⛩. Si no sabes como ponerlos es tan fácil como pulsar dos teclas [WIN]+[.] y de saldrá un menú donde elegir (al menos en Windows10)."
+    } 
+  
+]
